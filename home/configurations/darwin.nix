@@ -4,8 +4,8 @@
   ...
 }: {
   imports = [
-    ./../modules/widgets.nix
-    ./../modules/wallpaper.nix
+    ./../modules/darwin/widgets.nix
+    ./../modules/darwin/wallpaper.nix
     ./../modules/common/sops.nix
     ./../modules/common/vscode/vscodeconf.nix
     # ./../modules/common/vesktop/default.nix
