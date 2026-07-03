@@ -4,11 +4,12 @@
   ...
 }: {
   options = {
-    system-data.enable =
-      lib.mkEnableOption "template, template description";
+    system-data-cleanup.enable =
+      lib.mkEnableOption "system-data-cleanup, Revmoves all system data of macos every 7days during system rebuild";
   };
 
-  config = lib.mkIf config.system-data.enable {
+  config = lib.mkIf config.system-data-cleanup.enable {
+    # Goal is to not use homebrew but use nix
     homebrew.brews = [
       "mole"
     ];
@@ -58,14 +59,14 @@
 
           echo "Starting system data cleanup..."
 
-          echo "$CURRENT_EPOCH" > "$CLEANUP_LOG_TIMESTAMP"
-
           if sudo "$MOLE_EXEC_PATH" clean 2>/dev/null | tee -a "$CLEANUP_LOG_LATEST" | grep "Free space change:" > /tmp/freespace.txt 2>&1; then
             FREE_SPACE_CHANGE=$(cat /tmp/freespace.txt)
             CLEANED_FREE_SPACE=$(echo "$FREE_SPACE_CHANGE" | awk -F': *' '{print $2}' | awk '{print $1}')
 
             echo "[$CURRENT_HUMAN_DATE] [INFO] System data cleanup completed successfully. Space removed: $CLEANED_FREE_SPACE." >> $CLEANUP_LOG_HISTORY
             echo "System data cleanup completed successfully Removed: $CLEANED_FREE_SPACE"
+
+            echo "$CURRENT_EPOCH" > "$CLEANUP_LOG_TIMESTAMP"
 
             rm -f /tmp/freespace.txt
           else
