@@ -50,6 +50,11 @@
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
 
     determinate.url = "github:DeterminateSystems/determinate";
+
+    vicinae = {
+      url = "github:vicinaehq/vicinae";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ {
@@ -76,6 +81,9 @@
       };
 
       flake = {
+        extra-substituters = ["https://vicinae.cachix.org"];
+        extra-trusted-public-keys = ["vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc="];
+
         colmenaHive = colmena.lib.makeHive {
           meta = {
             nixpkgs = import nixpkgs {

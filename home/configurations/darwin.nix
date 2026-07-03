@@ -1,9 +1,11 @@
 {
   pkgs,
   self,
+  inputs,
   ...
 }: {
   imports = [
+    inputs.vicinae.homeManagerModules.default
     ./../modules/darwin/widgets.nix
     ./../modules/darwin/wallpaper.nix
     ./../modules/common/sops.nix
@@ -21,6 +23,17 @@
   vscodeconf.enable = true;
   zshconf.enable = true;
   gitconf.enable = true;
+
+  programs.vicinae = {
+    enable = true; # default: false
+    systemd = {
+      enable = true; # default: false
+      autoStart = true; # default: false
+      environment = {
+        USE_LAYER_SHELL = 1;
+      };
+    };
+  };
 
   home = {
     packages = [

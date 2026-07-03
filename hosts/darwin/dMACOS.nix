@@ -35,7 +35,12 @@
 
   users.users.xm0se.home = "/Users/xm0se";
 
+  # nixpkgs.overlays = [
+  #   inputs.vicinae.overlays.default
+  # ];
+
   environment.systemPackages = [
+    # pkgs.vicinae
     inputs.colmena.packages.${pkgs.stdenv.hostPlatform.system}.colmena
     #--
     pkgs.mas
