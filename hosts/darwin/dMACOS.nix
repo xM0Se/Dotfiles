@@ -17,9 +17,11 @@
   ];
   determinateNix.enable = true;
   essential-cli-tools.enable = true;
+
   essential-gui-apps.enable = true;
   u-pkg-qmk.enable = true;
 
+  u-pkg-wezterm.enable = false;
   brew = {
     mas.common.enable = false;
     font.common.enable = true;
