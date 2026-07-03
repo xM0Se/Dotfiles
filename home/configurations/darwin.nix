@@ -6,6 +6,7 @@
 }: {
   imports = [
     inputs.vicinae.homeManagerModules.default
+    inputs.mac-app-util.homeManagerModules.default
     ./../modules/darwin/widgets.nix
     ./../modules/darwin/wallpaper.nix
     ./../modules/common/sops.nix
