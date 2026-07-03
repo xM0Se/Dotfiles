@@ -24,7 +24,7 @@
 
   home = {
     packages = [
- #     self.packages.${pkgs.stdenv.hostPlatform.system}.nvimconf
+      self.packages.${pkgs.stdenv.hostPlatform.system}.nvimconf
     ];
     sessionVariables = {
       EDITOR = "nvim";
