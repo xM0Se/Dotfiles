@@ -6,6 +6,7 @@
 }: {
   imports = [
     inputs.determinate.darwinModules.default
+    inputs.mac-app-util.darwinModules.default
     (self + "/pkgs/nixpkgs-unstable/cli/u-pkg-essential-cli-tools.nix")
     (self + "/pkgs/nixpkgs-unstable/cli/u-pkg-all-cli-tools.nix")
     (self + "/pkgs/nixpkgs-unstable/gui/essential-gui-apps.nix")
