@@ -29,6 +29,9 @@ cd dotfiles
 ```zsh
 curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install --no-confirm
 ```
+```zsh
+. /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+```
 
 ```zsh
 sudo nix run nix-darwin#darwin-rebuild -- switch --flake ~/dotfiles#dMACOS
