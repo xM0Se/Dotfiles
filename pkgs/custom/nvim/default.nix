@@ -201,7 +201,7 @@
 
         format = {
           enable = true;
-          type = ["prettierd"];
+          type = ["prettier"];
         };
       };
       lua.enable = true;
