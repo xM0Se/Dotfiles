@@ -19,6 +19,7 @@
     ./../modules/darwin/aerospace/default.nix
     ./../modules/darwin/borders/default.nix
     ./../modules/darwin/ghostty/default.nix
+    ./../modules/common/vicinae/hidden_mac.nix
   ];
 
   vscodeconf.enable = true;
@@ -26,12 +27,19 @@
   gitconf.enable = true;
 
   programs.vicinae = {
-    enable = true; # default: false
+    enable = true;
     systemd = {
-      enable = true; # default: false
-      autoStart = true; # default: false
-      environment = {
-        USE_LAYER_SHELL = 1;
+      enable = true;
+      autoStart = true;
+    };
+    settings = {
+      pop_to_root_on_close = true;
+      escape_key_behavior = "close_window";
+      font.normal.family = "JetBrains Mono";
+      theme.dark.name = "rose-pine-moon";
+      launcher_window = {
+        compact_mode.enabled = true;
+        material = "blur";
       };
     };
   };
