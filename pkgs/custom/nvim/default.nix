@@ -72,10 +72,6 @@
       tmux-navigator = {
         package = pkgs.vimPlugins.vim-tmux-navigator;
       };
-      smear-cursor = {
-        package = pkgs.vimPlugins.smear-cursor-nvim;
-        setup = ''require('smear_cursor').setup {}'';
-      };
     };
 
     telescope.enable = true;
