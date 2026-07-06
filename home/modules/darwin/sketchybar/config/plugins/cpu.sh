@@ -16,8 +16,6 @@ routine | forced | system_woke | mouse.clicked | mouse.entered | mouse.exited)
 
   sketchybar --set "$NAME" \
     icon="􀫥" \
-    icon.color="$TEXT" \
-    label="${cpu_usage}%" \
-    label.color="$TEXT"
+    label="${cpu_usage}%"
   ;;
 esac

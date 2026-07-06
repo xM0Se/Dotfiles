@@ -11,9 +11,9 @@ fi
 win_count=$(aerospace list-windows --workspace "$sid" 2>/dev/null | wc -l | tr -d ' ')
 
 if [ "$sid" = "$FOCUSED_WORKSPACE" ]; then
-  LABEL_COLOR="$OPEN_SPACE_COLOR"
+  LABEL_COLOR="$BASE0D"
 else
-  LABEL_COLOR="$TEXT"
+  LABEL_COLOR="$BASE05"
 fi
 
 if [ "$sid" = "$FOCUSED_WORKSPACE" ] || [ "$win_count" -gt 0 ]; then
@@ -21,7 +21,6 @@ if [ "$sid" = "$FOCUSED_WORKSPACE" ] || [ "$win_count" -gt 0 ]; then
   sketchybar --set "$NAME" \
     label="$sid" \
     label.color="$LABEL_COLOR" \
-    label.font.size=15 \
     label.align=center \
     icon.drawing=off \
     background.drawing=off \

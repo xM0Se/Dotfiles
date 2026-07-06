@@ -5,24 +5,18 @@ sketchybar \
   --set day \
   update_freq=120 \
   icon.drawing=off \
-  padding_right=4 \
-  label="$(date '+%a')" \
-  label.color="$TEXT"
+  label="$(date '+%a')"
 
 sketchybar \
   --add item date left \
   --set date \
   update_freq=120 \
   icon.drawing=off \
-  padding_right=4 \
-  label="$(date '+%d' | sed 's/^0//')" \
-  label.color="$TEXT"
+  label="$(date '+%d' | sed 's/^0//')"
 
 sketchybar \
   --add item month left \
   --set month \
   update_freq=120 \
   icon.drawing=off \
-  padding_right=4 \
-  label="$(date '+%b')" \
-  label.color="$TEXT"
+  label="$(date '+%b')"
