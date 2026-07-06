@@ -6,7 +6,7 @@
 }: {
   imports = [
     inputs.determinate.darwinModules.default
-    inputs.mac-app-util.darwinModules.default
+    # inputs.mac-app-util.darwinModules.default
     (self + "/pkgs/nixpkgs-unstable/cli/u-pkg-essential-cli-tools.nix")
     (self + "/pkgs/nixpkgs-unstable/cli/u-pkg-all-cli-tools.nix")
     (self + "/pkgs/nixpkgs-unstable/gui/essential-gui-apps.nix")
@@ -57,11 +57,13 @@
     pkgs.nmap
     pkgs.dwt1-shell-color-scripts
     pkgs.ripgrep
+    pkgs.whatsapp-for-mac
     pkgs.tldr
     pkgs.raycast
     pkgs.tree
     pkgs.anki-bin
     # pkgs.bitwarden-desktop
+    pkgs.bitwarden-cli
     pkgs.obsidian
     pkgs.keycastr
     pkgs.vscode
