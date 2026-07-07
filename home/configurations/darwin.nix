@@ -36,10 +36,8 @@
         name = "bitwarden";
         sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
         rev = "fake-revision";
-        npmDepsHash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
       })
     ];
-
     settings = {
       pop_to_root_on_close = true;
       escape_key_behavior = "close_window";
