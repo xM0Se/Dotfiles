@@ -2,8 +2,6 @@
   pkgs,
   self,
   inputs,
-  config,
-  lib,
   ...
 }: {
   imports = [
@@ -23,6 +21,7 @@
     ./../modules/darwin/ghostty/default.nix
     ./../modules/common/vicinae/hidden_mac_apps.nix
     ./../modules/common/vicinae/hidden_mac_settings.nix
+    ./../modules/common/vicinae/bitwarden.nix
   ];
 
   vscodeconf.enable = true;
@@ -31,13 +30,6 @@
 
   programs.vicinae = {
     enable = true;
-    extensions = [
-      (lib.vicinae.mkRayCastExtension {
-        name = "bitwarden";
-        sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
-        rev = "fake-revision";
-      })
-    ];
     settings = {
       pop_to_root_on_close = true;
       escape_key_behavior = "close_window";
@@ -50,30 +42,17 @@
     };
   };
 
-  sops.secrets = {
-    "bitwarden/client_id" = {};
-    "bitwarden/client_secret" = {};
-  };
-
   home = {
-    packages = [
-      self.packages.${pkgs.stdenv.hostPlatform.system}.nvimconf
-      (pkgs.writeShellScriptBin "bw" ''
-        export BW_CLIENTID=$(cat "${config.sops.secrets."bitwarden/client_id".path}")
-        export BW_CLIENTSECRET=$(cat "${config.sops.secrets."bitwarden/client_secret".path}")
-        exec ${pkgs.bitwarden-cli}/bin/bw "$@"
-      '')
-    ];
-    sessionVariables = {
-      BW_CLIENTID = "$(cat ${config.sops.secrets."bitwarden/client_id".path})";
-      BW_CLIENTSECRET = "$(cat ${config.sops.secrets."bitwarden/client_secret".path})";
-
-      EDITOR = "nvim";
-      PAGER = "bat";
-    };
     # file = {
     #   "qmk_firmware/keyboards/crkbd/keymaps/custom".source = /Users/xm0se/dotfiles-for-humans/qmk;
     # };
+    packages = [
+      self.packages.${pkgs.stdenv.hostPlatform.system}.nvimconf
+    ];
+    sessionVariables = {
+      EDITOR = "nvim";
+      PAGER = "bat";
+    };
     stateVersion = "25.05";
   };
   programs.home-manager.enable = true;
