@@ -51,7 +51,7 @@
       };
       entrypoints = {
         search.preferences = {
-          primaryAction = "copy";
+          primaryAction = "showDetails";
           transientCopySearch = "passwords";
         };
         generate-password-quick.enabled = false;
