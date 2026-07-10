@@ -2,7 +2,7 @@ _: {
   services = {
     openssh = {
       enable = true;
-      generateHostKeys = true;
+      # generateHostKeys = true;
       openFirewall = true;
       settings = {
         UseDns = false;
