@@ -6,3 +6,4 @@
 - fix RpPi5 installation1
 - test backups and nixos anywhere on minecraft-server
 - make templates for nix-servers and darwin system configurations
+- fix the added input "hive/${input}" that appers when running any colmena command

@@ -40,10 +40,7 @@
 
     disko.url = "github:nix-community/disko";
 
-    nixos-raspberrypi = {
-      url = "github:nvmd/nixos-raspberrypi/main";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
 
     flake-parts.url = "github:hercules-ci/flake-parts";
 
@@ -51,33 +48,49 @@
 
     determinate.url = "github:DeterminateSystems/determinate";
 
-    vicinae = {
-      url = "github:vicinaehq/vicinae";
+    vicinae.url = "github:vicinaehq/vicinae";
+
+    terranix = {
+      url = "github:terranix/terranix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # mac-app-util = {
-    #   url = "github:hraban/mac-app-util/master";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    mac-app-util = {
+      url = "github:hraban/mac-app-util/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ {
     self,
     nixpkgs,
     nvf,
-    nix-darwin,
     flake-parts,
     colmena,
-    nixos-raspberrypi,
     ...
-  }:
+  }: let
+    hosts = import ./hosts;
+    mkHost = import ./lib/builders/mkHost.nix {
+      inherit inputs self hosts;
+    };
+  in
     flake-parts.lib.mkFlake {inherit inputs self;} {
+      imports = [inputs.terranix.flakeModule];
+
       systems = [
         "aarch64-darwin"
         "x86_64-linux"
       ];
+
       perSystem = {pkgs, ...}: {
+        terranix.terranixConfigurations.default = {
+          terraformWrapper.package = pkgs.opentofu;
+          extraArgs = {inherit hosts;};
+          modules = [
+            ./terranix/opentofu.nix
+          ];
+        };
+
         packages.nvimconf =
           (nvf.lib.neovimConfiguration {
             inherit pkgs;
@@ -85,40 +98,36 @@
           }).neovim;
       };
 
-      flake = {
-        extra-substituters = ["https://vicinae.cachix.org"];
-        extra-trusted-public-keys = ["vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc="];
-
-        colmenaHive = colmena.lib.makeHive {
-          meta = {
-            nixpkgs = import nixpkgs {
-              system = "x86_64-linux";
-            };
-            specialArgs = {inherit inputs self;};
-          };
-          minecraft-server = import ./hosts/servers/minecraft-server/deploy.nix;
-        };
-
-        darwinConfigurations."dMACOS" = nix-darwin.lib.darwinSystem {
-          specialArgs = {inherit inputs self;};
-          modules = [
-            ./hosts/darwin/dMACOS.nix
+      flake = {lib, ...}: {
+        nixConfig = {
+          extra-substituters = [
+            "https://vicinae.cachix.org"
+            "https://nixos-raspberrypi.cachix.org"
+          ];
+          extra-trusted-public-keys = [
+            "vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc="
+            "nixos-raspberrypi.cachix.org-1:4iMO9LXa8BqhU+Rpg6LQKiGa2lsNh/j2oiYLNOQ5sPI="
           ];
         };
 
-        nixosConfigurations.rpi5 = nixos-raspberrypi.lib.nixosSystem {
-          specialArgs = {inherit inputs self;};
-          modules = [
-            ./hosts/RbPi5/test.nix
-          ];
+        colmenaHive = import ./lib/builders/mkColmena.nix {
+          inherit inputs self hosts colmena nixpkgs lib;
         };
 
-        nixosConfigurations.minecraft-server = nixpkgs.lib.nixosSystem {
-          specialArgs = {inherit inputs self;};
-          modules = [
-            ./hosts/servers/minecraft-server/config.nix
-          ];
-        };
+        nixosConfigurations =
+          lib.mapAttrs
+          mkHost
+          (lib.filterAttrs (_: h: h.type == "nixos") hosts);
+
+        darwinConfigurations =
+          lib.mapAttrs
+          mkHost
+          (lib.filterAttrs (_: h: h.type == "darwin") hosts);
+
+        raspberryPiConfigurations =
+          lib.mapAttrs
+          mkHost
+          (lib.filterAttrs (_: h: h.type == "rbpi") hosts);
       };
     };
 }

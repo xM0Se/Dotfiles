@@ -13,4 +13,6 @@
     cfg.bootloader
     config.boot.kernelPackages.kernel.version
   ];
+  boot.loader.raspberry-pi.bootloader = "kernel";
+  boot.tmp.useTmpfs = true;
 }

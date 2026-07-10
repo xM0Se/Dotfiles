@@ -6,11 +6,19 @@
 }: {
   imports = [
     ./hardware-configuration.nix
+    ./disko.nix
+    ../../../configuration/modules/nixos/hetzner.nix
     (self + "/pkgs/nixpkgs-unstable/cli/u-pkg-essential-cli-tools.nix")
     (self + "/configuration/modules/nixos/minecraft-servers/default.nix")
     (self + "/configuration/configurations/server.nix")
   ];
 
+  hetzner = {
+    enable = true;
+    serverName = "test";
+    serverType = "cx23";
+    serverIPv4 = true;
+  };
   essential-cli-tools.enable = true;
   home-manager.users = {
     moritz = {

@@ -5,5 +5,4 @@ _: {
     targetUser = "deploy";
     buildOnTarget = true;
   };
-  imports = [./config.nix];
 }
