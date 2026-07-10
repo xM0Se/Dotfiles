@@ -10,7 +10,7 @@
     ./pay-respects/pay-respects.nix
     ./zoxide/zoxide.nix
     ./bat/bat.nix
-    ./btop.nix
+    ./btop/default.nix
     ./tmux/tmux.nix
   ];
 
