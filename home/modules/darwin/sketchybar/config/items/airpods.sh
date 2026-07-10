@@ -1,10 +1,14 @@
 #!/bin/bash
 
+#_______________ airpod case _______________
+
 sketchybar -m \
   --add item casep right \
   --set casep update_freq=10 \
   label="--%" \
-  label.align=center \
+  label.font.size=11 \
+  padding_left=6 \
+  padding_right=6 \
   --set casep script="$PLUGIN_DIR/airpods.sh"
 
 sketchybar -m \
@@ -13,11 +17,15 @@ sketchybar -m \
   label.drawing=off \
   icon="􂭇"
 
+#_______________ left airpod _______________
+
 sketchybar -m \
   --add item lpodp right \
   --set casep update_freq=10 \
   label="--%" \
-  label.align=center \
+  label.font.size=11 \
+  padding_left=6 \
+  padding_right=6 \
   --set lpodp script="$PLUGIN_DIR/airpods.sh"
 
 sketchybar -m \
@@ -26,11 +34,15 @@ sketchybar -m \
   label.drawing=off \
   icon="􂭄"
 
+#_______________ right airpod _______________
+
 sketchybar -m \
   --add item rpodp right \
   --set casep update_freq=10 \
   label="--%" \
-  label.align=center \
+  label.font.size=11 \
+  padding_left=6 \
+  padding_right=6 \
   --set rpodp script="$PLUGIN_DIR/airpods.sh"
 
 sketchybar -m \
