@@ -8,7 +8,7 @@
     defaultSopsFile = "${self}/secrets/secrets.yaml";
     defaultSopsFormat = "yaml";
     age = {
-      keyFile = "/etc/sops.age.key";
+      keyFile = "/var/lib/sops-nix/key.txt";
       sshKeyPaths = [];
     };
   };
