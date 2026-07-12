@@ -1,0 +1,7 @@
+- Try to automate macOS application permissions
+- Do on startup applications (probably with aerospace)
+- fix installation of mas apps
+- fix RbPi5 installation
+- Test backups and NixOS anywhere on minecraft-server
+- Make templates for nix-servers and Darwin system configurations
+- Fix the added input "hive/${input}" that appears when running any colmena command
