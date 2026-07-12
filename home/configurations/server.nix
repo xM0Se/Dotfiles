@@ -6,7 +6,7 @@
   imports = [
     ./../modules/common/zsh/zsh.nix
     ./../modules/common/git.nix
-    ./../modules/common/sops.nix
+    ./../modules/nixos/sops.nix
   ];
 
   zshconf.enable = true;

@@ -1,0 +1,12 @@
+{
+  inputs,
+  self,
+  ...
+}: {
+  imports = [inputs.sops-nix.homeManagerModules.sops];
+  sops = {
+    defaultSopsFile = "${self}/secrets/secrets.yaml";
+    defaultSopsFormat = "yaml";
+    age.keyFile = "/var/lib/sops-nix/key.txt";
+  };
+}
