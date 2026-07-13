@@ -24,7 +24,7 @@
       (inputs.vicinae.lib.${pkgs.stdenv.hostPlatform.system}.mkRayCastExtension {
         name = "bitwarden";
         rev = "refs/heads/main";
-        sha256 = "sha256-kSIfQcnAZuwT9ipXOJR3nMLlwS4OXX03mP5jX1ktwnw=";
+        sha256 = "sha256-IFlA/ccMVfMsB2OgzXk7BmyIMmsfkxVa/Gt2rWMxrgs=";
         installPhase = ''
           runHook preInstall
           mkdir -p $out
