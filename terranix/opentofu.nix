@@ -111,7 +111,7 @@ in {
         target_user = "root";
 
         extra_environment = {
-          DECRYPTION_KEY = "\${data.sops_file.opentofu.data[\"minecraft-server.sops\"]}";
+          DECRYPTION_KEY = "\${data.sops_file.opentofu.data[\"${hostname}.sops\"]}";
         };
 
         extra_files_script = "${pkgs.writeScript "prepare-secrets" ''
