@@ -1,13 +1,12 @@
 {pkgs, ...}: {
-  services.minecraft-servers.servers.mach-was = {
+  services.minecraft-servers.servers.ferien = {
     enable = true;
     autoStart = true;
     enableReload = true;
-    package = pkgs.purpurServers.purpur-26_1_2;
+    package = pkgs.purpurServers.purpur;
     serverProperties =
       {
-        motd = "Mach was !";
-        level-seed = 3791842102387187656;
+        motd = "Mach was in den ferien!";
         server-port = 25565;
       }
       // (import ../modules/common/serverproperties.nix);

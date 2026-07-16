@@ -1,7 +1,7 @@
 {inputs, ...}: {
   imports = [
     inputs.nix-minecraft.nixosModules.minecraft-servers
-    ./servers/mach-was.nix
+    ./servers/ferien.nix
   ];
   nixpkgs.overlays = [inputs.nix-minecraft.overlay];
 
