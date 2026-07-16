@@ -1,5 +1,10 @@
 {inputs, ...}: {
-  imports = [inputs.nix-homebrew.darwinModules.nix-homebrew];
+  imports = [
+    inputs.nix-homebrew.darwinModules.nix-homebrew
+    ./casks
+    ./fonts
+    ./mas
+  ];
   nix-homebrew = {
     enable = true;
     enableRosetta = true;
