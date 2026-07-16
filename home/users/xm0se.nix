@@ -27,12 +27,12 @@
         IdentityFile = "~/.ssh/github";
       };
       "nix-server-moritz" = {
-        HostName = "116.203.223.177";
+        HostName = "167.235.75.227";
         User = "moritz";
         IdentityFile = "~/.ssh/nix-server-moritz";
       };
       "nix-server-deploy" = {
-        HostName = "116.203.223.177";
+        HostName = "167.235.75.227";
         User = "deploy";
         IdentityFile = "~/.ssh/nix-server-deploy";
       };
