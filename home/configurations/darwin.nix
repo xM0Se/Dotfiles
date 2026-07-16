@@ -9,7 +9,7 @@
     ./../modules/darwin/sops.nix
     ./../modules/common/vscode/vscodeconf.nix
     ./../modules/common/vesktop/default.nix
-    ./../modules/common/zsh/zsh.nix
+    ./../modules/common/zsh
     ./../modules/common/git.nix
     ./../modules/common/zen/default.nix
     ./../modules/darwin/sketchybar/default.nix
@@ -20,7 +20,7 @@
   ];
 
   vscodeconf.enable = true;
-  zshconf.enable = true;
+  zsh.enable = true;
   gitconf.enable = true;
 
   home = {

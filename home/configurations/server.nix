@@ -4,12 +4,12 @@
   ...
 }: {
   imports = [
-    ./../modules/common/zsh/zsh.nix
+    ./../modules/common/zsh
     ./../modules/common/git.nix
     ./../modules/nixos/sops.nix
   ];
 
-  zshconf.enable = true;
+  zsh.enable = true;
   gitconf.enable = true;
 
   programs.home-manager.enable = true;
