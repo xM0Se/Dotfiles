@@ -1,7 +1,13 @@
 keys:
   - &macos-dev age1ek2kysw5xlw5gkrckpmty67g53v99rkm7lgrr8ds8dsm2l7fafmqzw5m54
   - &minecraft-server age1pf4qxy55qfp8ate5tkugr4f94dt8jygknyna455zea3ev8vmnalqfdaagn
+  - &ssh-honeypot age1a2vqz4jjtw7ejlswptfcm2tty4hy2dgpngemt2h86ed82fqkyfmqpehqv7
 creation_rules:
+  - path_regex: secrets/ssh-honeypot.yaml$
+    key_groups:
+    - age:
+      - *macos-dev
+      - *ssh-honeypot
   - path_regex: secrets/secrets.yaml$
     key_groups:
     - age:
