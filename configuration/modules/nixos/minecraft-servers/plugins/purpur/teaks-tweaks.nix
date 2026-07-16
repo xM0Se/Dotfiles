@@ -1,4 +1,4 @@
-# auto generated with nix-minecraft-plugin-upgrade --loader purpur --game-version 26.1.2 --project teaks-tweaks
+# auto generated with nix-minecraft-plugin-upgrade --loader purpur --game-version 26.2 --project teaks-tweaks
 { pkgs, ... }: {
-  "plugins/teakstweaks-2.1.3.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/Xdn5t532/versions/MxwUtmy2/teakstweaks-2.1.3.jar"; sha512 = "08c33637d1983931ffd2b36d3c88971077daa8865facc8a00220761ad35552f195a27ccacffd132f2bd44034020542e166bdc1f96f487260bba8a4a2fac57080"; };
+  "plugins/teakstweaks-2.1.4.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/Xdn5t532/versions/ReH3FreP/teakstweaks-2.1.4.jar"; sha512 = "9763234c319ee859ecec411475553180b3e727e9c436b34c1ced8872e94aa6a87932c1ce998fa0a6761799f2bda5e0c725a1f8a6c104b8c2a811c0ddf1734078"; };
 }
