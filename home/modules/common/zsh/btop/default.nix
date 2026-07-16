@@ -4,11 +4,11 @@
   ...
 }: {
   options = {
-    btopconf.enable =
-      lib.mkEnableOption "enables btopconf";
+    btop.enable =
+      lib.mkEnableOption "btop";
   };
 
-  config = lib.mkIf config.btopconf.enable {
+  config = lib.mkIf config.btop.enable {
     programs.btop = {
       enable = true;
       settings = {

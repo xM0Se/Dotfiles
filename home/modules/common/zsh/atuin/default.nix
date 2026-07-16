@@ -4,10 +4,11 @@
   ...
 }: {
   options = {
-    atuinconf.enable = lib.mkEnableOption "atuinconf";
+    atuin.enable =
+      lib.mkEnableOption "atuin";
   };
 
-  config = lib.mkIf config.atuinconf.enable {
+  config = lib.mkIf config.atuin.enable {
     programs.atuin = {
       enable = true;
       settings = {

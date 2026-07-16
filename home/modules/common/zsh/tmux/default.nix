@@ -4,12 +4,12 @@
   config,
   ...
 }: {
-  imports = [
-  ];
+  options = {
+    tmux.enable =
+      lib.mkEnableOption "tmux";
+  };
 
-  options.tmuxconf.enable = lib.mkEnableOption "tmuxconf";
-
-  config = lib.mkIf config.tmuxconf.enable {
+  config = lib.mkIf config.tmux.enable {
     programs.zsh.prezto.tmux.autoStartRemote = true;
 
     programs.tmux = {

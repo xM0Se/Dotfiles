@@ -5,9 +5,10 @@
   ...
 }: {
   options = {
-    batconf.enable = lib.mkEnableOption "batconf";
+    bat.enable =
+      lib.mkEnableOption "bat";
   };
-  config = lib.mkIf config.batconf.enable {
+  config = lib.mkIf config.bat.enable {
     programs.bat = {
       enable = true;
       themes = {

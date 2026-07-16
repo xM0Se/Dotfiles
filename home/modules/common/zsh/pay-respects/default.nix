@@ -4,10 +4,11 @@
   ...
 }: {
   options = {
-    pay-respectsconf.enable = lib.mkEnableOption "pay-respectsconf";
+    pay-respects.enable =
+      lib.mkEnableOption "pay-respects";
   };
 
-  config = lib.mkIf config.pay-respectsconf.enable {
+  config = lib.mkIf config.pay-respects.enable {
     programs.pay-respects = {
       enable = true;
       enableZshIntegration = true;
