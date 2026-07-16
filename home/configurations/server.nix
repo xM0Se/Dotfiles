@@ -12,7 +12,6 @@
   zsh.enable = true;
   gitconf.enable = true;
 
-  programs.home-manager.enable = true;
   home = {
     sessionVariables = {
       EDITOR = "nvim";
@@ -24,6 +23,7 @@
       self.packages.${pkgs.stdenv.hostPlatform.system}.nvimconf
     ];
 
+    programs.home-manager.enable = true;
     stateVersion = "25.05";
   };
 }
