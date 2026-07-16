@@ -78,7 +78,7 @@ in {
       (hostname: host: {
         name = hostname;
         server_type = host.hetzner.serverType;
-        location = "hel1";
+        location = "nbg1";
         labels = defaultLabels // host.hetzner.labels;
 
         delete_protection = host.hetzner.protect;
