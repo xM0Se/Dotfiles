@@ -129,16 +129,16 @@ in {
     })
     hetznerHosts;
 
-  resource."cloudflare_dns_record" =
-    lib.mapAttrs
-    (hostname: _host: {
-      zone_id = "430d33cd2a5466368b1b1de14ab8a0db";
-      name = "${hostname}.xm0se.dev";
-      ttl = 1;
-      type = "A";
-      comment = "dns record for ${hostname} automaticly generated using terraform";
-      content = "\${hcloud_server.${hostname}.ipv4_address}";
-      proxied = true;
-    })
-    hetznerHosts;
+  # resource."cloudflare_dns_record" =
+  #   lib.mapAttrs
+  #   (hostname: _host: {
+  #     zone_id = "430d33cd2a5466368b1b1de14ab8a0db";
+  #     name = "${hostname}.xm0se.dev";
+  #     ttl = 1;
+  #     type = "A";
+  #     comment = "dns record for ${hostname} automaticly generated using terraform";
+  #     content = "\${hcloud_server.${hostname}.ipv4_address}";
+  #     proxied = true;
+  #   })
+  #   hetznerHosts;
 }
