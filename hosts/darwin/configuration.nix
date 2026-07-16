@@ -7,22 +7,11 @@
   imports = [
     inputs.determinate.darwinModules.default
     inputs.mac-app-util.darwinModules.default
-    (self + "/pkgs/nixpkgs-unstable/cli/u-pkg-essential-cli-tools.nix")
-    (self + "/pkgs/nixpkgs-unstable/cli/u-pkg-all-cli-tools.nix")
-    (self + "/pkgs/nixpkgs-unstable/gui/essential-gui-apps.nix")
-    (self + "/pkgs/homebrew/brew.nix")
-    (self + "/pkgs/homebrew/mas/common.nix")
-    (self + "/pkgs/homebrew/fonts/common.nix")
-    (self + "/pkgs/homebrew/casks/common.nix")
+    (self + "/pkgs/homebrew")
     (self + "/configuration/configurations/darwin.nix")
   ];
   determinateNix.enable = true;
-  essential-cli-tools.enable = true;
 
-  essential-gui-apps.enable = true;
-  u-pkg-qmk.enable = true;
-
-  u-pkg-wezterm.enable = false;
   brew = {
     mas.common.enable = false;
     font.common.enable = true;
@@ -45,22 +34,26 @@
     #CLI tools
     pkgs.browsers
     pkgs.fastfetch
-    pkgs.nym
-    pkgs.stow
     pkgs.gh
     pkgs.cmatrix
     pkgs.nmap
     pkgs.dwt1-shell-color-scripts
     pkgs.ripgrep
     pkgs.whatsapp-for-mac
+    pkgs.radicle-node # Includes `rad`, `radicle-node`, and related tools
+    pkgs.radicle-httpd # HTTP API for web interfaces
+    pkgs.radicle-explorer # Web frontend
+    pkgs.radicle-tui # Terminal UI
+    pkgs.radicle-desktop # Desktop app
+    (pkgs.radicle-ci-broker.overrideAttrs (_: {
+      # Radicle CI/CD
+      doCheck = false;
+    }))
     pkgs.tldr
-    pkgs.raycast
     pkgs.tree
-    pkgs.anki-bin
     pkgs.bitwarden-cli
     pkgs.obsidian
     pkgs.keycastr
-    pkgs.vscode
   ];
 
   networking = {

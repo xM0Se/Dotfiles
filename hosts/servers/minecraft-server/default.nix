@@ -5,10 +5,9 @@
 
   hetzner = {
     enable = true;
-    serverType = "cx23";
+    serverType = "cx33";
     labels = {
       role = "minecraft-server";
-      managed = "nix";
     };
     protect = true;
   };

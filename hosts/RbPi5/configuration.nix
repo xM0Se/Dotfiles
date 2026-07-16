@@ -6,12 +6,10 @@
 }: {
   imports = [
     ./hardware-configuration.nix
-    (self + "/pkgs/nixpkgs-unstable/cli/u-pkg-essential-cli-tools.nix")
     (self + "/configuration/modules/nixos/minecraft-servers/default.nix")
     (self + "/configuration/configurations/server.nix")
   ];
 
-  essential-cli-tools.enable = true;
   home-manager.users = {
     moritz = {
       imports = [
