@@ -11,8 +11,8 @@
           legacy_commands = false;
           workspaces = [
             {
-              name = "personal";
-              path = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Mother-Vault";
+              name = "Mother Vault";
+              path = "/Users/xm0se/Library/Mobile Documents/iCloud~md~obsidian/Documents/Mother-Vault";
             }
           ];
         };
@@ -113,7 +113,7 @@
 
     spellcheck = {
       enable = true;
-      programmingWordlist.enable = true;
+      # programmingWordlist.enable = true; not working setup it just always asks you to download it and never finds it it does that like every time because of this it is turned off till fix
     };
 
     autocomplete.blink-cmp.enable = true;
