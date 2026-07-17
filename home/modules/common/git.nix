@@ -15,6 +15,7 @@
         user = {
           name = "xm0se";
           email = "189546389+xM0Se@users.noreply.github.com";
+          signingKey = "4A5978B7AF158629E93E571EF672D852B24EEB14";
         };
         alias = {
           cm = "commit -m";
@@ -38,6 +39,10 @@
         "*.swp"
         "*.DS_Store"
       ];
+      signing = {
+        key = "4A5978B7AF158629E93E571EF672D852B24EEB14";
+        signByDefault = true;
+      };
     };
   };
 }
