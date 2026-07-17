@@ -13,8 +13,8 @@
       enable = true;
       settings = {
         user = {
-          name = "xm0se";
-          email = "189546389+xM0Se@users.noreply.github.com";
+          name = "xM0Se";
+          email = "git@xM0Se.dev";
           signingKey = "4A5978B7AF158629E93E571EF672D852B24EEB14";
         };
         alias = {
