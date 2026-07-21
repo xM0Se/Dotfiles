@@ -6,6 +6,10 @@
   hetzner = {
     enable = true;
     serverType = "cx23";
+    network = {
+      name = "unsecure";
+      ip = "10.0.1.3";
+    };
     labels = {
       role = "ssh-honeypot";
     };
@@ -13,8 +17,8 @@
   };
 
   deployment = {
-    targetHost = "";
-    targetPort = 22;
+    targetHost = "ssh-honeypot";
+    targetPort = 2222;
     targetUser = "deploy";
     buildOnTarget = true;
   };

@@ -1,18 +1,22 @@
 {
   pkgs,
-  inputs,
   config,
   self,
   ...
 }: {
   imports = [
-    inputs.sops-nix.nixosModules.sops
     ./hardware-configuration.nix
     ./disko.nix
+    ./twingate.nix
+    ./crowdsec.nix
     (self + "/configuration/configurations/server.nix")
+    ./cowrie.nix
+    ./vector.nix
+    ./loki.nix
+    ./grafana.nix
   ];
 
-  options.sops.enable = false;
+  custom.sops.enable = false;
 
   sops = {
     defaultSopsFile = "${self}/secrets/ssh-honeypot.yaml";
@@ -40,14 +44,26 @@
 
   networking = {
     hostName = "nixos";
-    firewall.enable = false;
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [22];
+      extraCommands = ''
+        iptables -A nixos-fw -s 10.0.1.0/24 -j nixos-fw-accept
+      '';
+    };
   };
 
   time.timeZone = "Europe/Berlin";
 
-  sops.secrets = {
-    "userPasswords/moritz".neededForUsers = true;
-    "userPasswords/root".neededForUsers = true;
+  sops = {
+    secrets = {
+      "MaxMind/license_key" = {
+        owner = "root";
+        group = "root";
+      };
+      "userPasswords/moritz".neededForUsers = true;
+      "userPasswords/root".neededForUsers = true;
+    };
   };
 
   users = {
@@ -92,6 +108,11 @@
     pkgs.wget
   ];
 
+  virtualisation = {
+    docker.enable = true;
+    oci-containers.backend = "docker";
+  };
+
   services = {
     xserver.xkb.layout = "us";
     openssh = {
@@ -104,61 +125,29 @@
         PermitRootLogin = "no";
       };
     };
-  };
 
-  virtualisation.docker.enable = true;
-
-  virtualisation.oci-containers = {
-    backend = "docker";
-
-    containers = {
-      twingate-connector = {
-        image = "twingate/connector:latest";
-
-        environment = {
-          TWINGATE_NETWORK = "xmose";
-          TWINGATE_ACCESS_TOKEN = config.sops.secrets."twingate/accessToken";
-          TWINGATE_REFRESH_TOKEN = config.sops.secrets."twingate/refreshToken";
-
-          TWINGATE_LOG_ANALYTICS = "v2";
-          TWINGATE_LOG_LEVEL = "3";
-        };
-
-        autoStart = true;
-      };
-
-      cowrie = {
-        image = "cowrie/cowrie:latest";
-
-        ports = [
-          "22:2222"
+    geoipupdate = {
+      enable = true;
+      settings = {
+        AccountID = 1380455;
+        LicenseKey = "/run/credentials/geoipupdate.service/maxmind_license_key";
+        EditionIDs = [
+          "GeoLite2-ASN"
+          "GeoLite2-City"
+          "GeoLite2-Country"
         ];
-
-        volumes = [
-          "/var/lib/cowrie/etc:/cowrie/cowrie-git/etc"
-          "/var/lib/cowrie/log:/cowrie/cowrie-git/var/log"
-          "/var/lib/cowrie/downloads:/cowrie/cowrie-git/var/lib/cowrie/downloads"
-        ];
-
-        environment = {
-          TZ = "Europe/Berlin";
-        };
-
-        autoStart = true;
       };
     };
+
+    # prometheus = {
+    #   enable = true;
+    # };
   };
 
-  services = {
-    prometheus = {
-      enable = true;
-    };
-    loki = {
-      enable = true;
-    };
-    grafana = {
-      enable = true;
-    };
+  systemd.services = {
+    geoipupdate.serviceConfig.LoadCredential = [
+      "maxmind_license_key:${config.sops.secrets."MaxMind/license_key".path}"
+    ];
   };
 
   system.stateVersion = "25.05";
