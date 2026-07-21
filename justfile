@@ -12,5 +12,5 @@ up:
 gc:
     sudo nix-collect-garbage --delete-old
 
-deploy:
-    colmena apply
+deploy bin="":
+    colmena apply {{ if bin == "" { "" } else { "--on " + bin } }}
