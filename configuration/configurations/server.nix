@@ -5,6 +5,6 @@
     ../modules/nixos/home-manager.nix
     ../modules/common/common.nix
   ];
-  options.sops.enable =
+  custom.sops.enable =
     lib.mkDefault true;
 }
