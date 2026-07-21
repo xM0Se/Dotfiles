@@ -73,6 +73,32 @@ in {
       public_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBElFsyViicwKf+WifPUdLrHR4hqsQ5gfnXtgPb/UXzW hetzner-nix-anywhere";
     };
 
+    hcloud_network = builtins.listToAttrs (
+      map
+      (host: {
+        name = host.hetzner.network.name;
+        value = {
+          name = host.hetzner.network.name;
+          ip_range = "10.0.1.0/24";
+        };
+      })
+      (builtins.attrValues hetznerHosts)
+    );
+
+    hcloud_network_subnet = builtins.listToAttrs (
+      map
+      (host: {
+        name = "${host.hetzner.network.name}_subnet";
+        value = {
+          type = "cloud";
+          network_id = "\${hcloud_network.${host.hetzner.network.name}.id}";
+          network_zone = "eu-central";
+          ip_range = "10.0.1.0/24";
+        };
+      })
+      (builtins.attrValues hetznerHosts)
+    );
+
     hcloud_server =
       lib.mapAttrs
       (hostname: host: {
@@ -80,6 +106,11 @@ in {
         server_type = host.hetzner.serverType;
         location = "nbg1";
         labels = defaultLabels // host.hetzner.labels;
+
+        network = {
+          subnet_id = "\${hcloud_network_subnet.${host.hetzner.network.name}_subnet.id}";
+          ip = "${host.hetzner.network.ip}";
+        };
 
         delete_protection = host.hetzner.protect;
         rebuild_protection = host.hetzner.protect;
