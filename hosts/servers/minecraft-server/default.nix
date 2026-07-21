@@ -6,6 +6,10 @@
   hetzner = {
     enable = true;
     serverType = "cx33";
+    network = {
+      name = "primary";
+      ip = "10.0.1.2";
+    };
     labels = {
       role = "minecraft-server";
     };
