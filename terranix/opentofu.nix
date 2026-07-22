@@ -104,7 +104,7 @@ in {
       (hostname: host: {
         name = hostname;
         server_type = host.hetzner.serverType;
-        location = "nbg1";
+        location = host.hetzner.serverLocation;
         labels = defaultLabels // host.hetzner.labels;
 
         network = {
