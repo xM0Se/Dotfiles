@@ -4,7 +4,7 @@
   system = "x86_64-linux";
 
   hetzner = {
-    enable = true;
+    enable = false;
     serverType = "cx33";
     network = {
       name = "primary";
