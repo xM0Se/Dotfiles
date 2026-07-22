@@ -8,7 +8,7 @@
     lib.filterAttrs
     (
       _: host:
-        host.provider == "hetzner"
+        host.provider == "hetzner" && host.hetzner.enable == true
     )
     hosts;
   defaultLabels = {
