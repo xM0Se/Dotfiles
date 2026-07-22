@@ -3,6 +3,7 @@
     username = "xm0se";
     homeDirectory = "/Users/xm0se";
   };
+
   sops.secrets = {
     "ssh-private-keys/github" = {
       path = "${config.home.homeDirectory}/.ssh/github";
@@ -17,6 +18,7 @@
       mode = "0600";
     };
   };
+
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
@@ -33,6 +35,11 @@
       };
       "nix-server-deploy" = {
         HostName = "167.235.75.227";
+        User = "deploy";
+        IdentityFile = "~/.ssh/nix-server-deploy";
+      };
+      "ssh-honeypot" = {
+        HostName = "10.0.1.3";
         User = "deploy";
         IdentityFile = "~/.ssh/nix-server-deploy";
       };
