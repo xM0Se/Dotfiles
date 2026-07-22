@@ -23,7 +23,6 @@
       self.packages.${pkgs.stdenv.hostPlatform.system}.nvimconf
     ];
 
-    programs.home-manager.enable = true;
     stateVersion = "25.05";
   };
 }
