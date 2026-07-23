@@ -59,9 +59,9 @@
 
           echo "Starting system data cleanup..."
 
-          if sudo "$MOLE_EXEC_PATH" clean 2>/dev/null | tee -a "$CLEANUP_LOG_LATEST" | grep "Free space change:" > /tmp/freespace.txt 2>&1; then
+          if sudo "$MOLE_EXEC_PATH" clean 2>/dev/null | tee -a "$CLEANUP_LOG_LATEST" | grep "Tracked cleanup:" > /tmp/freespace.txt 2>&1; then
             FREE_SPACE_CHANGE=$(cat /tmp/freespace.txt)
-            CLEANED_FREE_SPACE=$(echo "$FREE_SPACE_CHANGE" | awk -F': *' '{print $2}' | awk '{print $1}')
+            CLEANED_FREE_SPACE=$(echo "$FREE_SPACE_CHANGE" | awk -F': ' '{print $2}' | awk '{print $1}')
 
             echo "[$CURRENT_HUMAN_DATE] [INFO] System data cleanup completed successfully. Space removed: $CLEANED_FREE_SPACE." >> $CLEANUP_LOG_HISTORY
             echo "System data cleanup completed successfully Removed: $CLEANED_FREE_SPACE"
