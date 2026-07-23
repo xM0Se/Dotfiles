@@ -69,6 +69,7 @@
             echo "$CURRENT_EPOCH" > "$CLEANUP_LOG_TIMESTAMP"
 
             rm -f /tmp/freespace.txt
+            rm -f latest.log
           else
             echo "[$CURRENT_HUMAN_DATE] [ERROR] System data cleanup failed." >> "$CLEANUP_LOG_HISTORY"
             echo "Error: System data cleanup failed. Check '$CLEANUP_LOG_LATEST' for details." >&2
