@@ -54,6 +54,10 @@
     pkgs.bitwarden-cli
     pkgs.obsidian
     pkgs.keycastr
+
+    pkgs.gnupg
+    pkgs.pinentry_mac
+    pkgs.pcsc-tools
   ];
 
   networking = {
@@ -61,6 +65,11 @@
       enable = true;
       enableStealthMode = true;
     };
+  };
+
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
   };
 
   system = {
