@@ -21,6 +21,8 @@
     };
   };
 
+  # environment.etc."grafana/dashboards/admin-dashboard.yaml".source = ./admin-dashboard.yaml;
+
   services.grafana = {
     enable = true;
 
@@ -41,16 +43,7 @@
     provision = {
       enable = true;
 
-      # dashboards.settings = {
-      #   apiVersion = 1;
-      #
-      #   providers = [
-      #     {
-      #       name = "default";
-      #       options.path = "/var/lib/grafana/dashboards";
-      #     }
-      #   ];
-      # };
+      # dashboards.path = "/etc/grafana/dashboards";
 
       datasources.settings = {
         apiVersion = 1;

@@ -17,6 +17,7 @@
   ];
 
   custom.sops.enable = false;
+  custom.ssh.enable = false;
 
   sops = {
     defaultSopsFile = "${self}/secrets/ssh-honeypot.yaml";

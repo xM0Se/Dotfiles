@@ -6,6 +6,7 @@
   hetzner = {
     enable = true;
     serverType = "cx23";
+    serverLocation = "nbg1";
     network = {
       name = "unsecure";
       ip = "10.0.1.3";

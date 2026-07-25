@@ -71,11 +71,39 @@
           onsuccess = "next_stage";
           nodes = [
             {
-              filter = "evt.Parsed.eventid == 'cowrie.login.failed' || evt.Parsed.eventid == 'cowrie.login.success'";
+              filter = "evt.Parsed.eventid == 'cowrie.login.failed'";
+
               statics = [
                 {
                   meta = "log_type";
-                  value = "ssh_failed-auth";
+                  value = "ssh_auth";
+                }
+                {
+                  meta = "auth_result";
+                  value = "failed";
+                }
+                {
+                  meta = "service";
+                  value = "ssh";
+                }
+                {
+                  meta = "source_ip";
+                  expression = "evt.Parsed.src_ip";
+                }
+              ];
+            }
+
+            {
+              filter = "evt.Parsed.eventid == 'cowrie.login.success'";
+
+              statics = [
+                {
+                  meta = "log_type";
+                  value = "ssh_auth";
+                }
+                {
+                  meta = "auth_result";
+                  value = "success";
                 }
                 {
                   meta = "service";
@@ -88,6 +116,35 @@
               ];
             }
           ];
+        }
+      ];
+      scenarios = [
+        {
+          name = "local/cowrie-ssh-bruteforce";
+          description = "Detect SSH brute force against a Cowrie honeypot";
+
+          type = "leaky";
+
+          filter = ''
+            evt.Meta.log_type == "ssh_auth"
+          '';
+
+          groupby = "evt.Meta.source_ip";
+
+          capacity = 5;
+          leakspeed = "1m";
+          blackhole = "30m";
+
+          labels = {
+            service = "ssh";
+            behavior = "ssh:bruteforce";
+            remediation = true;
+            confidence = 3;
+            spoofable = 1;
+            classification = [
+              "attack.T1110"
+            ];
+          };
         }
       ];
     };
@@ -115,13 +172,6 @@
           };
         };
       };
-    };
-
-    hub = {
-      collections = [];
-      scenarios = [
-        "crowdsecurity/ssh-bf"
-      ];
     };
   };
 
