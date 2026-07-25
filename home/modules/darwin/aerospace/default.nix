@@ -6,6 +6,7 @@
     ./gaps.nix
     ./MoveToWorkspace.nix
     ./floating.nix
+    ./startup.nix
   ];
   programs.aerospace = {
     package = pkgs.aerospace;
