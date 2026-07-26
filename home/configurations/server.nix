@@ -20,7 +20,7 @@
 
     packages = [
       pkgs.hello
-      self.packages.${pkgs.stdenv.hostPlatform.system}.nvimconf
+      self.packages.${pkgs.stdenv.hostPlatform.system}.nvim
     ];
 
     stateVersion = "25.05";

@@ -75,7 +75,9 @@
     };
   in
     flake-parts.lib.mkFlake {inherit inputs self;} {
-      imports = [inputs.terranix.flakeModule];
+      imports = [
+        inputs.terranix.flakeModule
+      ];
 
       systems = [
         "aarch64-darwin"
@@ -87,14 +89,16 @@
           terraformWrapper.package = pkgs.opentofu;
           extraArgs = {inherit hosts;};
           modules = [
-            ./terranix/opentofu.nix
+            ./terranix
           ];
         };
 
-        packages.nvimconf =
+        packages.nvim =
           (nvf.lib.neovimConfiguration {
             inherit pkgs;
-            modules = [./pkgs/custom/nvim/default.nix];
+            modules = [
+              ./pkgs/custom/nvim
+            ];
           }).neovim;
       };
 

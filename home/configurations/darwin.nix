@@ -28,7 +28,7 @@
     #   "qmk_firmware/keyboards/crkbd/keymaps/custom".source = /Users/xm0se/dotfiles-for-humans/qmk;
     # };
     packages = [
-      self.packages.${pkgs.stdenv.hostPlatform.system}.nvimconf
+      self.packages.${pkgs.stdenv.hostPlatform.system}.nvim
     ];
     sessionVariables = {
       EDITOR = "nvim";
