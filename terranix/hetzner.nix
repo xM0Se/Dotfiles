@@ -5,67 +5,23 @@
   ...
 }: let
   hetznerHosts =
-    lib.filterAttrs
-    (
+    lib.filterAttrs (
       _: host:
         host.provider == "hetzner" && host.hetzner.enable == true
     )
     hosts;
+
   defaultLabels = {
     managed_by = "terraform";
     project = "nix-cluster";
   };
 in {
-  variable."state_passphrase" = {
-    type = "string";
-    sensitive = true;
+  terraform.required_providers.hcloud = {
+    source = "hetznercloud/hcloud";
+    version = "1.67.0";
   };
 
-  terraform = {
-    encryption = {
-      key_provider."pbkdf2"."my_passphrase" = {
-        passphrase = "\${var.state_passphrase}";
-      };
-
-      method."aes_gcm"."default" = {
-        keys = "key_provider.pbkdf2.my_passphrase";
-      };
-
-      state = {
-        method = "method.aes_gcm.default";
-        enforced = true;
-      };
-    };
-    required_providers = {
-      sops = {
-        source = "carlpett/sops";
-      };
-
-      hcloud = {
-        source = "hetznercloud/hcloud";
-        version = "~> 1.45";
-      };
-
-      cloudflare = {
-        source = "cloudflare/cloudflare";
-        version = "~> 5";
-      };
-    };
-  };
-
-  data.sops_file.opentofu = {
-    source_file = "../../secrets/secrets.yaml";
-  };
-
-  provider = {
-    hcloud = {
-      token = "\${data.sops_file.opentofu.data[\"hetzner.api\"]}";
-    };
-
-    cloudflare = {
-      api_token = "\${data.sops_file.opentofu.data[\"cloudflare.api\"]}";
-    };
-  };
+  provider.hcloud.token = "\${data.sops_file.opentofu.data[\"hetzner.api\"]}";
 
   resource = {
     hcloud_ssh_key.nixos_anywhere_ssh_pub = {
@@ -159,17 +115,4 @@ in {
       };
     })
     hetznerHosts;
-
-  # resource."cloudflare_dns_record" =
-  #   lib.mapAttrs
-  #   (hostname: _host: {
-  #     zone_id = "430d33cd2a5466368b1b1de14ab8a0db";
-  #     name = "${hostname}.xm0se.dev";
-  #     ttl = 1;
-  #     type = "A";
-  #     comment = "dns record for ${hostname} automaticly generated using terraform";
-  #     content = "\${hcloud_server.${hostname}.ipv4_address}";
-  #     proxied = true;
-  #   })
-  #   hetznerHosts;
 }
