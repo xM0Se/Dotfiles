@@ -2,9 +2,7 @@
   description = "xM0Se NIX Flake";
 
   inputs = {
-    nixos-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
 
@@ -14,12 +12,12 @@
     };
 
     nix-darwin = {
-      url = "github:nix-darwin/nix-darwin/nix-darwin-26.05";
+      url = "github:nix-darwin/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-26.05";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -36,7 +34,10 @@
       };
     };
 
-    colmena.url = "github:zhaofengli/colmena";
+    colmena = {
+      url = "github:zhaofengli/colmena/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     disko.url = "github:nix-community/disko";
 
@@ -66,7 +67,6 @@
     nixpkgs,
     nvf,
     flake-parts,
-    colmena,
     ...
   }: let
     hosts = import ./hosts;
@@ -115,7 +115,7 @@
         };
 
         colmenaHive = import ./lib/builders/mkColmena.nix {
-          inherit inputs self hosts colmena nixpkgs lib;
+          inherit inputs self hosts nixpkgs lib;
         };
 
         nixosConfigurations =
