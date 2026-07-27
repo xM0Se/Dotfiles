@@ -16,12 +16,14 @@
     protect = true;
   };
 
-  deployment = {
+  deploy = {
+    enable = false;
     targetHost = "nix-server-deploy";
     targetPort = 22;
     targetUser = "deploy";
     buildOnTarget = true;
   };
+
   modules = [
     ./configuration.nix
   ];

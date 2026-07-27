@@ -17,7 +17,8 @@
     protect = false;
   };
 
-  deployment = {
+  deploy = {
+    enable = true;
     targetHost = "ssh-honeypot";
     targetPort = 2222;
     targetUser = "deploy";

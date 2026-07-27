@@ -5,26 +5,36 @@
   hosts,
   lib,
   ...
-}:
-inputs.colmena.lib.makeHive (
-  {
-    meta = {
-      nixpkgs = import nixpkgs {
-        system = "x86_64-linux";
-      };
+}: let
+  colmenaHosts =
+    lib.filterAttrs (
+      _: host:
+        host.system == "x86_64-linux" && host.deploy.enable == true
+    )
+    hosts;
+in
+  inputs.colmena.lib.makeHive (
+    {
+      meta = {
+        nixpkgs = import nixpkgs {
+          system = "x86_64-linux";
+        };
 
-      specialArgs = {
-        inherit inputs self hosts;
+        specialArgs = {
+          inherit inputs self hosts;
+        };
       };
-    };
-  }
-  // (lib.mapAttrs
+    }
+    // lib.mapAttrs
     (_name: host: {
-      imports = host.modules;
+      deployment = {
+        targetHost = host.deploy.targetHost;
+        targetUser = host.deploy.targetUser;
+        targetPort = host.deploy.targetPort;
+        buildOnTarget = host.deploy.buildOnTarget;
+      };
 
-      inherit (host) deployment;
+      imports = host.modules;
     })
-    (lib.filterAttrs
-      (_name: host: host.system == "x86_64-linux")
-      hosts))
-)
+    colmenaHosts
+  )
