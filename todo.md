@@ -1,8 +1,8 @@
-- Try to automate macOS application permissions
-- Do on startup applications (probably with aerospace)
+- Try to automate macOS application permissions ==stalled==
 - fix installation of mas apps
 - fix RbPi5 installation
 - Test backups on minecraft-server
 - Make templates for nix-servers and Darwin system configurations
-- Fix the added input "hive/${input}" that appears when running any colmena command
-- encrypt drive on minecraft-server
+- Encrypt drive on minecraft-server/ssh-honeypot
+- Fix empty password section on Grafana dashboard ==to-do== ==due today==
+- Add Grafana dashboard to nix ==done but failing==
