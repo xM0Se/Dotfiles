@@ -11,6 +11,7 @@
     (self + "/configuration/configurations/darwin.nix")
   ];
   determinateNix.enable = true;
+  documentation.enable = false;
 
   brew = {
     mas.common.enable = false;

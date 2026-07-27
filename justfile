@@ -1,5 +1,5 @@
 [macos]
-build bin="dMACOS":
+build bin="mini":
     sudo darwin-rebuild switch --flake ~/dotfiles#{{ bin }}
 
 [linux]
