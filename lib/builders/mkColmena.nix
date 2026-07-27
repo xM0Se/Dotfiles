@@ -1,12 +1,12 @@
 {
   inputs,
   self,
-  hosts,
-  colmena,
   nixpkgs,
+  hosts,
   lib,
+  ...
 }:
-colmena.lib.makeHive (
+inputs.colmena.lib.makeHive (
   {
     meta = {
       nixpkgs = import nixpkgs {
