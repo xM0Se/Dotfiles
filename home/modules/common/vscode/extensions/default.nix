@@ -4,19 +4,18 @@
   ...
 }: {
   imports = [
-    ./dracula-theme.nix
-    ./vscodevim.nix
+    # ./vscodevim.nix
   ];
 
   options = {
-    vs-code-extentions.enable =
-      lib.mkEnableOption "vs-code-extentions";
+    vscode.extentions.enable =
+      lib.mkEnableOption "vscode.extentions";
   };
 
-  config = lib.mkIf config.vs-code-extentions.enable {
-    dracula-theme.enable =
-      lib.mkDefault true;
-    vscodevim.enable =
-      lib.mkDefault true;
+  config = lib.mkIf config.vscode.extentions.enable {
+    vscode.extentions = {
+      # vscodevim.enable =
+      # lib.mkDefault true;
+    };
   };
 }
