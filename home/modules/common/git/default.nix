@@ -1,14 +1,15 @@
 {
   lib,
+  pkgs,
   config,
   ...
 }: {
   options = {
-    gitconf.enable =
-      lib.mkEnableOption "enables gitconf";
+    git.enable =
+      lib.mkEnableOption "enables git";
   };
 
-  config = lib.mkIf config.gitconf.enable {
+  config = lib.mkIf config.git.enable {
     programs.git = {
       enable = true;
       settings = {
@@ -44,5 +45,12 @@
         signByDefault = true;
       };
     };
+
+    home.packages = [
+      pkgs.pinentry_mac
+      pkgs.pcsc-tools
+    ];
+
+    services.gpg-agent.enableSshSupport = true;
   };
 }
