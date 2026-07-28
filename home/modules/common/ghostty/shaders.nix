@@ -1,20 +1,6 @@
-{pkgs, ...}: {
-  programs.ghostty = {
-    enable = true;
-    package = pkgs.ghostty-bin;
-    enableZshIntegration = true;
-    settings = {
-      mouse-hide-while-typing = true;
-      custom-shader = "shaders/cursor_warp.glsl";
-      copy-on-select = true;
-      keybind = [
-        "global:cmd+t+shift=toggle_quick_terminal"
-        ''option+backspace=text:\x17''
-      ];
-      theme = "Rose Pine Moon";
-      macos-titlebar-style = "hidden";
-    };
-  };
+_: {
+  programs.ghostty.settings.custom-shader = "shaders/cursor_warp.glsl";
+
   # This is from "https://github.com/sahaj-b/ghostty-cursor-shaders/blob/main/cursor_warp.glsl"
   home.file.".config/ghostty/shaders/cursor_warp.glsl".text = ''
     // sRGB -> Linear conversion (needed because Ghostty passes sRGB values but the shader pipeline operates in linear color space)
