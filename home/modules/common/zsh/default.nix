@@ -15,6 +15,7 @@
     ./fzf
     ./eza
     ./just
+    ./fastfetch
   ];
 
   options = {
@@ -23,16 +24,29 @@
   };
 
   config = lib.mkIf config.zsh.enable {
-    fzf.enable = true;
-    atuin.enable = true;
-    oh-my-posh.enable = true;
-    pay-respects.enable = true;
-    zoxide.enable = true;
-    bat.enable = true;
-    btop.enable = true;
-    tmux.enable = true;
-    eza.enable = true;
-    just.enable = true;
+    atuin.enable =
+      lib.mkDefault true;
+    oh-my-posh.enable =
+      lib.mkDefault true;
+    pay-respects.enable =
+      lib.mkDefault true;
+    zoxide.enable =
+      lib.mkDefault true;
+    bat.enable =
+      lib.mkDefault true;
+    btop.enable =
+      lib.mkDefault true;
+    tmux.enable =
+      lib.mkDefault true;
+    fzf.enable =
+      lib.mkDefault true;
+    eza.enable =
+      lib.mkDefault true;
+    just.enable =
+      lib.mkDefault true;
+    fastfetch.enable =
+      lib.mkDefault true;
+
     programs.zsh = {
       enable = true;
       plugins = [
