@@ -5,12 +5,13 @@
 }: {
   imports = [
     ./../modules/common/zsh
-    ./../modules/common/git.nix
-    ./../modules/nixos/sops.nix
+    ./../modules/common/git
+    ./../modules/common/sops
   ];
 
   zsh.enable = true;
-  gitconf.enable = true;
+  git.enable = true;
+  sops.enable = true;
 
   home = {
     sessionVariables = {

@@ -1,33 +1,41 @@
 {
-  pkgs,
   self,
+  inputs,
+  pkgs,
   ...
 }: {
   imports = [
+    ./../modules/common/vscode
+    ./../modules/common/vesktop
+    ./../modules/common/zsh
+    ./../modules/common/git
+    ./../modules/common/zen
+    ./../modules/common/sops
+    ./../modules/common/vicinae
+    ./../modules/common/radicle
+    ./../modules/common/ghostty
+    ./../modules/darwin/sketchybar
+    ./../modules/darwin/aerospace
     ./../modules/darwin/widgets.nix
     ./../modules/darwin/wallpaper.nix
-    ./../modules/darwin/sops.nix
-    ./../modules/common/vscode/vscodeconf.nix
-    ./../modules/common/vesktop/default.nix
-    ./../modules/common/zsh
-    ./../modules/common/git.nix
-    ./../modules/common/zen/default.nix
-    ./../modules/darwin/sketchybar/default.nix
-    ./../modules/darwin/aerospace/default.nix
-    ./../modules/darwin/borders/default.nix
-    ./../modules/darwin/ghostty/default.nix
-    ./../modules/common/vicinae/default.nix
+    ./../modules/darwin/borders
   ];
 
-  vscodeconf.enable = true;
+  vscode.enable = false;
   zsh.enable = true;
-  gitconf.enable = true;
+  git.enable = true;
+  radicle.enable = true;
+  sops.enable = true;
+  ghostty.enable = true;
 
   home = {
     # file = {
     #   "qmk_firmware/keyboards/crkbd/keymaps/custom".source = /Users/xm0se/dotfiles-for-humans/qmk;
     # };
     packages = [
+      inputs.colmena.packages.${pkgs.stdenv.hostPlatform.system}.colmena
+      pkgs.sops
+      pkgs.obsidian
       self.packages.${pkgs.stdenv.hostPlatform.system}.nvim
     ];
     sessionVariables = {
