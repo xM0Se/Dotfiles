@@ -14,6 +14,7 @@
       settings = {
         enter_accept = false;
       };
+      flags = ["--disable-ctrl-r"];
       forceOverwriteSettings = true;
       enableZshIntegration = true;
     };

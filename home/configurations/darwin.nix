@@ -37,7 +37,10 @@
       pkgs.sops
       pkgs.obsidian
       self.packages.${pkgs.stdenv.hostPlatform.system}.nvim
+
+      pkgs.pinentry-mac # for git commit singing
     ];
+
     sessionVariables = {
       EDITOR = "nvim";
       PAGER = "bat";

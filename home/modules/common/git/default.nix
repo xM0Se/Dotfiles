@@ -47,7 +47,6 @@
     };
 
     home.packages = [
-      pkgs.pinentry_mac
       pkgs.pcsc-tools
     ];
 
