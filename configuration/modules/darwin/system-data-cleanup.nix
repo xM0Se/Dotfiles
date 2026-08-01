@@ -4,11 +4,11 @@
   ...
 }: {
   options = {
-    system-data-cleanup.enable =
+    custom.system-data-cleanup.enable =
       lib.mkEnableOption "system-data-cleanup, Revmoves all system data of macos every 7days during system rebuild";
   };
 
-  config = lib.mkIf config.system-data-cleanup.enable {
+  config = lib.mkIf config.custom.system-data-cleanup.enable {
     # Goal is to not use homebrew but use nix
     homebrew.brews = [
       "mole"
