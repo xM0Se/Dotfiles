@@ -1,4 +1,4 @@
-_: {
+{self, ...}: {
   nix = {
     settings.experimental-features = ["nix-command" "flakes"];
     # gc = {
@@ -8,5 +8,10 @@ _: {
     #   persistent = true;
     # };
   };
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = {
+    config.allowUnfree = true;
+    overlays = [
+      self.overlays.default
+    ];
+  };
 }

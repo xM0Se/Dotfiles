@@ -87,7 +87,12 @@
         "x86_64-linux"
       ];
 
-      perSystem = {pkgs, ...}: {
+      perSystem = {system, ...}: let
+        pkgs = import nixpkgs {
+          inherit system;
+          overlays = [self.overlays.default];
+        };
+      in {
         terranix.terranixConfigurations.default = {
           terraformWrapper.package = pkgs.opentofu;
           extraArgs = {inherit hosts;};
@@ -96,16 +101,28 @@
           ];
         };
 
-        packages.nvim =
-          (nvf.lib.neovimConfiguration {
-            inherit pkgs;
-            modules = [
-              ./pkgs/custom/nvim
-            ];
-          }).neovim;
+        packages =
+          {
+            nvim =
+              (nvf.lib.neovimConfiguration {
+                inherit pkgs;
+                modules = [
+                  ./pkgs/custom/nvim
+                ];
+              }).neovim;
+          }
+          // pkgs.lib.optionalAttrs pkgs.stdenv.isDarwin {
+            mole = pkgs.custom.mole;
+          };
       };
 
       flake = {lib, ...}: {
+        overlays.default = final: _prev: {
+          custom = {
+            mole = final.callPackage ./pkgs/custom/mole {};
+          };
+        };
+
         nixConfig = {
           extra-substituters = [
             "https://vicinae.cachix.org"

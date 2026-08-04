@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }: {
   options = {
@@ -9,11 +10,6 @@
   };
 
   config = lib.mkIf config.custom.system-data-cleanup.enable {
-    # Goal is to not use homebrew but use nix
-    homebrew.brews = [
-      "mole"
-    ];
-
     system.activationScripts.postActivation = {
       text = ''
         CLEANUP_LOG_DIR="/var/log/nix/system-data-cleanup"
@@ -22,9 +18,9 @@
         CLEANUP_LOG_HISTORY="$CLEANUP_LOG_DIR/history.log"
         CLEANUP_LOG_LATEST="$CLEANUP_LOG_DIR/latest.log"
 
-        MOLE_EXEC_PATH="/opt/homebrew/bin/mole"
+        MOLE_EXEC_PATH="${pkgs.custom.mole}/bin/mole"
 
-        MOLE_CONFIG_DIR="/var/root/.config/mole"
+        MOLE_CONFIG_DIR="/var/lib/mole"
         MOLE_CONFIG_WHITELIST="$MOLE_CONFIG_DIR/whitelist"
 
         CURRENT_HUMAN_DATE=$(date "+%Y-%m-%d %H:%M:%S")
