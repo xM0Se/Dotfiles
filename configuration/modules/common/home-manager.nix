@@ -13,7 +13,7 @@
   config = lib.mkIf config.custom.home-manager.enable {
     home-manager = {
       extraSpecialArgs = {inherit inputs self;};
-      useGlobalPkgs = true;
+      useGlobalPkgs = false;
       useUserPackages = true;
       backupFileExtension = "backup";
     };
