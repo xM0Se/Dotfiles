@@ -14,6 +14,7 @@
     ./../modules/common/vicinae
     ./../modules/common/radicle
     ./../modules/common/ghostty
+    ./../modules/common/neru
     ./../modules/darwin/sketchybar
     ./../modules/darwin/aerospace
     ./../modules/darwin/widgets.nix

@@ -60,6 +60,9 @@
       url = "github:hraban/mac-app-util/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    neru.url = "github:y3owk1n/neru";
+    neru.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs @ {

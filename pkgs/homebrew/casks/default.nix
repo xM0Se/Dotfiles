@@ -7,7 +7,6 @@
     ./kicad.nix
     ./mullvad-browser.nix
     ./orcaslicer.nix
-    ./homerow.nix
     ./kindavim.nix
     ./lulu.nix
     ./beeper.nix
@@ -25,8 +24,6 @@
       mullvad-browser.enable =
         lib.mkDefault true;
       orcaslicer.enable =
-        lib.mkDefault true;
-      homerow.enable =
         lib.mkDefault true;
       kindavim.enable =
         lib.mkDefault true;
