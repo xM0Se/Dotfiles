@@ -36,10 +36,9 @@
     packages = [
       inputs.colmena.packages.${pkgs.stdenv.hostPlatform.system}.colmena
       pkgs.sops
-      pkgs.obsidian
       self.packages.${pkgs.stdenv.hostPlatform.system}.nvim
 
-      pkgs.pinentry-mac # for git commit singing
+      pkgs.pinentry_mac # for git commit singing
     ];
 
     sessionVariables = {
