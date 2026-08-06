@@ -37,8 +37,6 @@
       inputs.colmena.packages.${pkgs.stdenv.hostPlatform.system}.colmena
       pkgs.sops
       self.packages.${pkgs.stdenv.hostPlatform.system}.nvim
-
-      pkgs.pinentry_mac # for git commit singing
     ];
 
     sessionVariables = {
