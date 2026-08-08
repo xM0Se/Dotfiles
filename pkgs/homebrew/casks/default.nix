@@ -4,12 +4,10 @@
   ...
 }: {
   imports = [
-    ./kicad.nix
     ./mullvad-browser.nix
     ./orcaslicer.nix
     ./kindavim.nix
     ./lulu.nix
-    ./beeper.nix
     ./hammerspoon.nix
     ./blackhole.nix
   ];
@@ -29,13 +27,9 @@
         lib.mkDefault true;
       lulu.enable =
         lib.mkDefault true;
-      beeper.enable =
-        lib.mkDefault true;
       hammerspoon.enable =
         lib.mkDefault true;
       blackhole.enable =
-        lib.mkDefault true;
-      kicad.enable =
         lib.mkDefault true;
     };
   };
