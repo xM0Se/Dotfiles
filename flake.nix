@@ -97,7 +97,7 @@
           overlays = [self.overlays.default];
         };
       in {
-        terranix.terranixConfigurations.default = {
+        terranix.terranixConfigurations.terranix = {
           terraformWrapper.package = pkgs.opentofu;
           extraArgs = {inherit hosts;};
           modules = [
