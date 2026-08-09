@@ -5,7 +5,7 @@
 
   deploy = {
     enable = true;
-    targetHost = "01";
+    targetHost = "server-01";
     targetPort = 22;
     targetUser = "deploy";
     buildOnTarget = true;
