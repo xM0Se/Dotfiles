@@ -61,6 +61,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    stylix.url = "github:nix-community/stylix";
+    stylix.inputs.nixpkgs.follows = "nixpkgs";
+
     neru.url = "github:y3owk1n/neru";
     neru.inputs.nixpkgs.follows = "nixpkgs";
   };
