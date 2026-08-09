@@ -3,4 +3,5 @@
   rpi = import ./RbPi5;
   mini = import ./darwin/mini;
   ssh-honeypot = import ./servers/ssh-honeypot;
+  server-01 = import ./servers/01;
 }
