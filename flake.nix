@@ -97,6 +97,8 @@
           overlays = [self.overlays.default];
         };
       in {
+        formatter = pkgs.alejandra;
+
         terranix.terranixConfigurations.terranix = {
           terraformWrapper.package = pkgs.opentofu;
           extraArgs = {inherit hosts;};
