@@ -55,13 +55,13 @@
         extraGroups = ["wheel"];
         home = "/moritz";
         hashedPasswordFile = config.sops.secrets."userPasswords/moritz".path;
-        openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJBl1kqPOoIsYob5yTncLgTFqB5MgLl+2lnAe4hEoYpL nix-server"];
+        openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINSsrnuLMIV2uOssQvdy8yCyqh/qLb2KzsBG85FlB6qB server-01-moritz"];
       };
       deploy = {
         isNormalUser = true;
         extraGroups = ["wheel"];
         hashedPassword = "!";
-        openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIALKJQ+LNa7PhF38vRiBFXU6YHEiHyb9h3EnBfneUTel nix-server-deploy"];
+        openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGjNR/+qtZJn3g6thm437eINn++e+ADzHhlHEmA14UW8 server-01-deploy"];
       };
       root = {
         home = "/root";

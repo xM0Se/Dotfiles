@@ -19,7 +19,7 @@
 
   deploy = {
     enable = true;
-    targetHost = "ssh-honeypot";
+    targetHost = "ssh-honeypot-deploy";
     targetPort = 2222;
     targetUser = "deploy";
     buildOnTarget = true;

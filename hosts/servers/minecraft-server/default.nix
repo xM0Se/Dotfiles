@@ -18,7 +18,7 @@
 
   deploy = {
     enable = false;
-    targetHost = "nix-server-deploy";
+    targetHost = "minecraft-server-deploy";
     targetPort = 22;
     targetUser = "deploy";
     buildOnTarget = true;

@@ -1,4 +1,8 @@
 {config, ...}: {
+  imports = [
+    ./server-ssh-keys.nix
+  ];
+
   home = {
     username = "xm0se";
     homeDirectory = "/Users/xm0se";
@@ -7,14 +11,6 @@
   sops.secrets = {
     "ssh-private-keys/github" = {
       path = "${config.home.homeDirectory}/.ssh/github";
-      mode = "0600";
-    };
-    "ssh-private-keys/nixServer/moritz" = {
-      path = "${config.home.homeDirectory}/.ssh/nix-server-moritz";
-      mode = "0600";
-    };
-    "ssh-private-keys/nixServer/deploy" = {
-      path = "${config.home.homeDirectory}/.ssh/nix-server-deploy";
       mode = "0600";
     };
   };
@@ -27,21 +23,6 @@
         HostName = "github.com";
         User = "git";
         IdentityFile = "~/.ssh/github";
-      };
-      "nix-server-moritz" = {
-        HostName = "167.235.75.227";
-        User = "moritz";
-        IdentityFile = "~/.ssh/nix-server-moritz";
-      };
-      "nix-server-deploy" = {
-        HostName = "167.235.75.227";
-        User = "deploy";
-        IdentityFile = "~/.ssh/nix-server-deploy";
-      };
-      "ssh-honeypot" = {
-        HostName = "10.0.1.3";
-        User = "deploy";
-        IdentityFile = "~/.ssh/nix-server-deploy";
       };
     };
   };
