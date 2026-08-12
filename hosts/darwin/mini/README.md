@@ -29,4 +29,4 @@ Afterward you can use `j build` when in the dotfiles directory
 
 ## Screenshots:
 
-<img width="3440" height="1440" alt="macOS-setup" src="https://github.com/user-attachments/assets/3bb381b9-9277-40ed-9bd6-c8bc85f28e53" />
+![ssh-honeypot](../../../assets/hosts/mini/screenshot.png)
