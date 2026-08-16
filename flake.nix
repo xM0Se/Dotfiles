@@ -122,7 +122,7 @@
                 ];
               }).neovim;
           }
-          // pkgs.lib.optionalAttrs pkgs.stdenv.isDarwin {
+          // pkgs.lib.optionalAttrs pkgs.stdenv.hostPlatform.isDarwin {
             mole = pkgs.custom.mole;
           };
       };
