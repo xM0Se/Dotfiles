@@ -88,6 +88,8 @@
     flake-parts.lib.mkFlake {inherit inputs self;} {
       imports = [
         inputs.terranix.flakeModule
+        ./hosts/servers/minecraft-server/configuration.nix
+        ./home/modules/darwin/sketchybar
       ];
 
       systems = [

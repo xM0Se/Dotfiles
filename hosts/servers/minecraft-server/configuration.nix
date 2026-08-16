@@ -2,85 +2,93 @@
   pkgs,
   config,
   self,
+  inputs,
   ...
-}: {
-  imports = [
-    ./hardware-configuration.nix
-    ./disko.nix
-    (self + "/configuration/modules/nixos/minecraft-servers/default.nix")
-    (self + "/configuration/configurations/server.nix")
-  ];
+}: let
+  serverName = "minecraft-server";
+in {
+  flake.nixosConfigurations.${serverName} = inputs.nixpkgs.lib.nixosSystem {
+    modules = [
+      ./hardware-configuration.nix
+      # ./disko.nix
+      # (self + "/configuration/modules/nixos/minecraft-servers/default.nix")
+      # (self + "/configuration/configurations/server.nix")
+    ];
 
-  home-manager.users = {
-    moritz = {
-      imports = [
-        (self + "/home/configurations/server.nix")
-        (self + "/home/users/moritz.nix")
-      ];
-    };
-    root = {
-      imports = [
-        (self + "/home/configurations/server.nix")
-        (self + "/home/users/root.nix")
-      ];
-    };
+    # imports = [
+    # ];
+
+    # home-manager.users = {
+    #   moritz = {
+    #     imports = [
+    #       (self + "/home/configurations/server.nix")
+    #       (self + "/home/users/moritz.nix")
+    #     ];
+    #   };
+    #   root = {
+    #     imports = [
+    #       (self + "/home/configurations/server.nix")
+    #       (self + "/home/users/root.nix")
+    #     ];
+    #   };
+    # };
+
+    # networking = {
+    #   hostName = "${serverName}";
+    #   firewall.enable = true;
+    # };
+
+    # time.timeZone = "Europe/Berlin";
+    #
+    # sops.secrets = {
+    #   "userPasswords/nixServer/moritz".neededForUsers = true;
+    #   "userPasswords/nixServer/root".neededForUsers = true;
+    # };
+    # users = {
+    #   mutableUsers = false;
+    #   users = {
+    #     moritz = {
+    #       isNormalUser = true;
+    #       extraGroups = ["wheel"];
+    #       home = "/moritz";
+    #       hashedPasswordFile = config.sops.secrets."userPasswords/nixServer/moritz".path;
+    #       openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJBl1kqPOoIsYob5yTncLgTFqB5MgLl+2lnAe4hEoYpL nix-server"];
+    #     };
+    #     deploy = {
+    #       isNormalUser = true;
+    #       extraGroups = ["wheel"];
+    #       hashedPassword = "!";
+    #       openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIALKJQ+LNa7PhF38vRiBFXU6YHEiHyb9h3EnBfneUTel nix-server-deploy"];
+    #     };
+    #     root = {
+    #       home = "/root";
+    #       hashedPasswordFile = config.sops.secrets."userPasswords/nixServer/root".path;
+    #     };
+    #   };
+    # };
+    #
+    # services.xserver.xkb.layout = "us";
+    # security.sudo.extraRules = [
+    #   {
+    #     users = ["deploy"];
+    #     commands = [
+    #       {
+    #         command = "ALL";
+    #         options = ["NOPASSWD"];
+    #       }
+    #     ];
+    #   }
+    # ];
+    #
+    # virtualisation.docker.enable = true;
+    #
+    # environment.systemPackages = [
+    #   pkgs.vim
+    #   pkgs.sops
+    #   pkgs.git
+    #   pkgs.wget
+    # ];
+    #
+    # system.stateVersion = "25.05";
   };
-
-  networking = {
-    hostName = "nixos";
-    firewall.enable = true;
-  };
-
-  time.timeZone = "Europe/Berlin";
-
-  sops.secrets = {
-    "userPasswords/nixServer/moritz".neededForUsers = true;
-    "userPasswords/nixServer/root".neededForUsers = true;
-  };
-  users = {
-    mutableUsers = false;
-    users = {
-      moritz = {
-        isNormalUser = true;
-        extraGroups = ["wheel"];
-        home = "/moritz";
-        hashedPasswordFile = config.sops.secrets."userPasswords/nixServer/moritz".path;
-        openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJBl1kqPOoIsYob5yTncLgTFqB5MgLl+2lnAe4hEoYpL nix-server"];
-      };
-      deploy = {
-        isNormalUser = true;
-        extraGroups = ["wheel"];
-        hashedPassword = "!";
-        openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIALKJQ+LNa7PhF38vRiBFXU6YHEiHyb9h3EnBfneUTel nix-server-deploy"];
-      };
-      root = {
-        home = "/root";
-        hashedPasswordFile = config.sops.secrets."userPasswords/nixServer/root".path;
-      };
-    };
-  };
-
-  services.xserver.xkb.layout = "us";
-  security.sudo.extraRules = [
-    {
-      users = ["deploy"];
-      commands = [
-        {
-          command = "ALL";
-          options = ["NOPASSWD"];
-        }
-      ];
-    }
-  ];
-
-  virtualisation.docker.enable = true;
-
-  environment.systemPackages = [
-    pkgs.vim
-    pkgs.sops
-    pkgs.git
-    pkgs.wget
-  ];
-
-  system.stateVersion = "25.05";
 }
