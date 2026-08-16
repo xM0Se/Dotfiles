@@ -47,7 +47,7 @@
     hostName = "nixos";
     firewall = {
       enable = true;
-      allowedTCPPorts = [22];
+      allowedTCPPorts = [22 5555];
       extraCommands = ''
         iptables -A nixos-fw -s 10.0.1.0/24 -j nixos-fw-accept
       '';
@@ -119,7 +119,7 @@
     openssh = {
       enable = true;
       openFirewall = false;
-      ports = [2222];
+      ports = [5555];
       settings = {
         UseDns = false;
         PasswordAuthentication = false;

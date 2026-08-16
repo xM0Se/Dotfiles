@@ -59,8 +59,7 @@ _: {
 
         labels = {
           job = "cowrie";
-          host = "{{ hostname }}";
-          filename = "{{ file }}";
+          filename = "file-{{ file }}";
         };
       };
     };
