@@ -4,7 +4,13 @@ keys:
   - &ssh-honeypot age1a2vqz4jjtw7ejlswptfcm2tty4hy2dgpngemt2h86ed82fqkyfmqpehqv7
   - &server-01 age15damzrhl0s5jxd4ww5nkfu7r8p65l668k4g3n5kfa6qgfwl8fyrsveq29f
   - &server-02 age1gseprf4h5whpd5dzvt7c5an0ddzughpkdnuy0ajfkjrqw67rm4pqxlp7qa
+  - &nixos-test age1nzlz4xcy3yvq0n95rwkwpll9zeswsakz3ldr8ssm9ajx0qphp9qsylj4dk
 creation_rules:
+  - path_regex: secrets/nixos-test.yaml$
+    key_groups:
+    - age:
+      - *nixos-test
+      - *macos-dev
   - path_regex: secrets/ssh-honeypot.yaml$
     key_groups:
     - age:

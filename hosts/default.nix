@@ -4,4 +4,5 @@
   ssh-honeypot = import ./servers/ssh-honeypot;
   server-01 = import ./servers/server-01;
   server-02 = import ./servers/server-02;
+  test-nixos = import ./nixos/test;
 }
