@@ -20,12 +20,18 @@
           "clock#I"
           "clock#M"
           "clock#p"
+
           "custom/separator"
+
           "clock#a"
           "clock#d"
           "clock#b"
+
           "custom/separator"
+
           "hyprland/workspaces"
+
+          "custom/separator"
         ];
         modules-center = [];
         modules-right = [
@@ -52,39 +58,49 @@
         ];
 
         "custom/separator" = {
-          format = "───────";
           tooltip = false;
+          format = "───────";
         };
 
         #Clock (split out because I can't figure out how to change the size independently :)
         "clock#I" = {
+          tooltip = false;
           format = "{:%I}";
         };
         "clock#M" = {
+          tooltip = false;
           format = "{:%M}";
         };
         "clock#p" = {
+          tooltip = false;
           format = "{:%p}";
         };
 
         #Date (split out because I can't figure out how to center it otherwise :)
         "clock#a" = {
+          tooltip = false;
           format = "{:%a}";
         };
         "clock#d" = {
+          tooltip = false;
           format = "{:%d}";
         };
         "clock#b" = {
+          tooltip = false;
           format = "{:%b}";
         };
 
         "hyprland/workspaces" = {
+          tooltip = false;
           format = "{icon}";
           orientation = "vertical";
-          tooltip = false;
+          on-click = "activate";
+          on-scroll-up = "none";
+          on-scroll-down = "none";
         };
 
         "pulseaudio" = {
+          tooltip = false;
           format = "{icon}";
           format-muted = " ";
           format-icons = {
@@ -92,37 +108,41 @@
           };
         };
         "pulseaudio#microphone" = {
+          tooltip = false;
           format-source = " ";
           format-source-muted = " ";
         };
 
         "custom/cpu" = {
+          tooltip = false;
           format = " ";
         };
         "cpu" = {
+          tooltip = false;
           format = "{usage}%";
         };
 
         "custom/memory" = {
+          tooltip = false;
           format = " ";
         };
         "memory" = {
+          tooltip = false;
           format = "{percentage}%";
         };
 
         "custom/nixos" = {
-          format = " ";
           tooltip = false;
+          format = " ";
         };
       };
     };
 
     style = ''
-      /* Essential styling tweaks for vertical layout */
       window#waybar {
         color: #e0def4;
         background-color: #2a273f;
-        border: 1px solid #393552;
+        border: 2px solid #393552;
         border-radius: 12px;
 
         font-family: "JetBrainsMono Nerd Font";
@@ -140,10 +160,12 @@
       }
 
       #clock.I {
+        padding-top: 5px;
         font-size: 30px;
       }
 
       #clock.M {
+        padding-top: 0px;
         font-size: 22px;
       }
 
@@ -153,6 +175,29 @@
 
       #pulseaudio, #network{
         margin: 10px 0;
+      }
+
+      #workspaces button {
+        background: transparent;
+        border: none;
+        padding: 0px 4px;
+        margin: 0;
+        box-shadow: none;
+        text-shadow: none;
+        border-radius: 0;
+
+        color: #595959;
+      }
+
+      #workspaces button.active {
+        color: #33ccee;
+        background: transparent;
+      }
+
+      #workspaces button:hover {
+        background: transparent;
+        color: #33ccee;
+        box-shadow: none;
       }
     '';
   };

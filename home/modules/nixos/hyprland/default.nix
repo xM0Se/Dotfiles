@@ -13,7 +13,7 @@
     ];
     configType = "lua";
     settings = let
-      workspaces = ["B" "T"];
+      workspaces = ["B" "T" "G" "D" "S"];
       terminal = lib.getExe pkgs.ghostty;
       editor = lib.getExe self.packages.${pkgs.stdenv.hostPlatform.system}.nvim;
     in {
@@ -60,7 +60,7 @@
           (bind "SPACE" "exec_cmd(\"vicinae toggle\")")
           (bind "RETURN" "exec_cmd(\"${terminal}\")")
           (bind "V" "exec_cmd(\"${terminal} -e ${editor}\")")
-          (bind "G" "exec_cmd(\"neru recursive_grid\")")
+          (bind "R" "exec_cmd(\"neru recursive_grid\")")
           (bind "Q" "window.close()")
           (bind "F" "window.fullscreen()")
 
@@ -83,6 +83,20 @@
         );
 
       config = {
+        general = {
+          gaps_in = 10;
+          gaps_out = 10;
+
+          border_size = 2;
+          col.active_border = "#eb6f92";
+          col.inactive_border = "#908caa";
+        };
+
+        decoration = {
+          rounding = 12;
+          rounding_power = 2;
+        };
+
         misc = {
           disable_hyprland_logo = true;
           disable_splash_rendering = true;
