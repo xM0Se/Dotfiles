@@ -1,19 +1,20 @@
+# !! WARNING !!
+# MASSIVE SECURITY ISSUE
+# TESTING ONLY read line [63]
 {
   pkgs,
-  inputs,
   config,
   self,
   ...
 }: {
   imports = [
     ./hardware-configuration.nix
+    ./disko.nix
     (self + "/configuration/configurations/nixos.nix")
   ];
 
-  programs.hyprland = {
-    enable = true;
-    package = inputs.hyprland.packages."${pkgs.stdenv.hostPlatform.system}".hyprland;
-  };
+  programs.hyprland.enable = true;
+  programs.zsh.enable = true;
 
   custom.sops.enable = false;
   sops = {
@@ -26,10 +27,10 @@
   };
 
   home-manager.users = {
-    xM0Se = {
+    moritz = {
       imports = [
         (self + "/home/configurations/nixos.nix")
-        (self + "/home/users/xM0Se.nix")
+        (self + "/home/users/moritz.nix")
       ];
     };
     root = {
@@ -51,7 +52,7 @@
 
   sops = {
     secrets = {
-      "userPasswords/xM0Se".neededForUsers = true;
+      "userPasswords/moritz".neededForUsers = true;
       "userPasswords/root".neededForUsers = true;
     };
   };
@@ -59,11 +60,12 @@
   users = {
     mutableUsers = false;
     users = {
-      xM0Se = {
+      moritz = {
+        shell = pkgs.zsh;
         isNormalUser = true;
-        extraGroups = ["wheel"];
-        home = "/xM0Se";
-        hashedPasswordFile = config.sops.secrets."userPasswords/xM0Se".path;
+        extraGroups = ["wheel" "input"]; # !!MASSIVE SECURITY ISSUE!! Adding input to user group causes everything running under that user has access to all keystrokes !!
+        home = "/moritz";
+        hashedPasswordFile = config.sops.secrets."userPasswords/moritz".path;
         openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJK1atrcGj/65s4ADf2/m3vInIkCZejT8fzIbsnpu/HJ nixos-test-xM0Se"];
       };
       deploy = {
@@ -73,6 +75,7 @@
         openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINE2RM+KeahSKK+zvkhvElVVYP9qUL8Gx5RFYTI8zQC5 nixos-test-deploy"];
       };
       root = {
+        shell = pkgs.zsh;
         home = "/root";
         hashedPasswordFile = config.sops.secrets."userPasswords/root".path;
       };
@@ -98,9 +101,7 @@
     pkgs.wget
   ];
 
-  services = {
-    xnixos.xkb.layout = "us";
-  };
+  services.xserver.xkb.layout = "us";
 
   system.stateVersion = "25.05";
 }
