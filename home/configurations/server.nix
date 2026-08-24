@@ -4,9 +4,9 @@
   ...
 }: {
   imports = [
-    ./../modules/common/zsh
-    ./../modules/common/git
-    ./../modules/common/sops
+    ../modules/common/zsh
+    ../modules/common/git
+    ../modules/common/sops
   ];
 
   zsh.enable = true;

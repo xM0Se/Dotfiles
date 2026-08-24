@@ -5,21 +5,21 @@
   ...
 }: {
   imports = [
-    ./../modules/common/vscode
-    ./../modules/common/vesktop
-    ./../modules/common/zsh
-    ./../modules/common/git
-    ./../modules/common/zen
-    ./../modules/common/sops
-    ./../modules/common/vicinae
-    ./../modules/common/radicle
-    ./../modules/common/ghostty
-    ./../modules/common/neru
-    ./../modules/darwin/sketchybar
-    ./../modules/darwin/aerospace
-    ./../modules/darwin/widgets.nix
-    ./../modules/darwin/wallpaper.nix
-    ./../modules/darwin/borders
+    ../modules/common/vscode
+    ../modules/common/vesktop
+    ../modules/common/zsh
+    ../modules/common/git
+    ../modules/common/zen
+    ../modules/common/sops
+    ../modules/common/vicinae
+    ../modules/common/radicle
+    ../modules/common/ghostty
+    ../modules/common/neru
+    ../modules/darwin/aerospace
+    ../modules/darwin/widgets.nix
+    ../modules/darwin/wallpaper.nix
+    ../modules/darwin/borders
+    inputs.self.homeModules.sketchybar
   ];
 
   vscode.enable = false;

@@ -5,22 +5,30 @@
   ...
 }: {
   imports = [
-    ./../modules/common/vesktop
-    ./../modules/common/zsh
-    ./../modules/common/git
-    ./../modules/common/zen
-    ./../modules/common/sops
-    ./../modules/common/vicinae
-    ./../modules/common/radicle
-    ./../modules/common/ghostty
-    ./../modules/common/neru
-    ./../modules/nixos/hyprland
+    ../modules/common/vesktop
+    ../modules/common/zsh
+    ../modules/common/git
+    ../modules/common/zen
+    ../modules/common/sops
+    ../modules/common/vicinae
+    ../modules/common/radicle
+    ../modules/common/ghostty
+    ../modules/common/neru
+    ../modules/nixos/hyprland
+    ../modules/nixos/waybar
   ];
 
   git.enable = true;
+  vicinae.enable = true;
   radicle.enable = true;
-  sops.enable = true;
+  sops.enable = false;
   ghostty.enable = true;
+  zsh.enable = true;
+  sops = {
+    defaultSopsFile = "${self}/secrets/nixos-test.yaml";
+    defaultSopsFormat = "yaml";
+    age.keyFile = "/var/lib/sops-nix/key.txt";
+  };
 
   home = {
     packages = [
