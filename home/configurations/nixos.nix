@@ -16,6 +16,7 @@
     ../modules/common/neru
     ../modules/nixos/hyprland
     ../modules/nixos/waybar
+    ../modules/nixos/hyprlock
   ];
 
   git.enable = true;

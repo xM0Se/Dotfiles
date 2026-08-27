@@ -63,6 +63,7 @@
           (bind "R" "exec_cmd(\"neru recursive_grid\")")
           (bind "Q" "window.close()")
           (bind "F" "window.fullscreen()")
+          (bind "X" "exec_cmd(\"hyprlock\")")
 
           (bind "H" "focus({ direction = \"left\" })")
           (bind "L" "focus({ direction = \"right\" })")
