@@ -22,6 +22,7 @@
     inputs.self.homeModules.sketchybar
   ];
 
+  vicinae.enable = true;
   vscode.enable = false;
   zsh.enable = true;
   git.enable = true;
