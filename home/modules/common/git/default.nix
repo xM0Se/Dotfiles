@@ -57,11 +57,11 @@
       defaultCacheTtl = 1800; # 30min
       maxCacheTtl = 7200; # 2h
       enableSshSupport =
-        if pkgs.stdenv.isDarwin
+        if pkgs.stdenv.hostPlatform.isDarwin
         then true
         else false;
       pinentry.package =
-        if pkgs.stdenv.isDarwin
+        if pkgs.stdenv.hostPlatform.isDarwin
         then pkgs.pinentry_mac
         else pkgs.pinentry-curses;
     };

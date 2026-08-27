@@ -16,7 +16,7 @@
       defaultSopsFormat = "yaml";
       age = {
         keyFile =
-          if pkgs.stdenv.isDarwin
+          if pkgs.stdenv.hostPlatform.isDarwin
           then "Users/xm0se/.config/sops/age/keys.txt"
           else "/var/lib/sops-nix/key.txt";
         sshKeyPaths = [];

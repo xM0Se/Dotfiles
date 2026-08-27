@@ -22,11 +22,11 @@
       bitwarden.enable =
         lib.mkDefault true;
       hidden-mac-apps.enable =
-        if pkgs.stdenv.isDarwin
+        if pkgs.stdenv.hostPlatform.isDarwin
         then lib.mkDefault true
         else lib.mkDefault false;
       macos-settings.enable =
-        if pkgs.stdenv.isDarwin
+        if pkgs.stdenv.hostPlatform.isDarwin
         then lib.mkDefault true
         else lib.mkDefault false;
     };
