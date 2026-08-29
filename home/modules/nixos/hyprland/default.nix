@@ -32,6 +32,7 @@
         (cmd "vicinae server")
         (cmd "neru launch")
         (cmd "waybar")
+        (cmd "systemctl --user start hyprpaper")
       ];
 
       layer_rule = [
