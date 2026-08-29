@@ -102,20 +102,20 @@
         "pulseaudio" = {
           tooltip = false;
           format = "{icon}";
-          format-muted = " ";
+          format-muted = "";
           format-icons = {
-            default = [" " " " " "];
+            default = ["" "" ""];
           };
         };
         "pulseaudio#microphone" = {
           tooltip = false;
-          format-source = " ";
-          format-source-muted = " ";
+          format-source = "";
+          format-source-muted = "";
         };
 
         "custom/cpu" = {
           tooltip = false;
-          format = " ";
+          format = "";
         };
         "cpu" = {
           tooltip = false;
@@ -124,7 +124,7 @@
 
         "custom/memory" = {
           tooltip = false;
-          format = " ";
+          format = "";
         };
         "memory" = {
           tooltip = false;
@@ -133,20 +133,23 @@
 
         "custom/nixos" = {
           tooltip = false;
-          format = " ";
+          format = "";
         };
       };
     };
 
     style = ''
-      window#waybar {
+      * {
         color: #e0def4;
+
+        font-family: "JetBrainsMono Nerd Font Propo";
+        font-size: 14px;
+      }
+
+      window#waybar {
         background-color: #2a273f;
         border: 2px solid #393552;
         border-radius: 12px;
-
-        font-family: "JetBrainsMono Nerd Font";
-        font-size: 14px;
       }
 
       #custom-separator {
