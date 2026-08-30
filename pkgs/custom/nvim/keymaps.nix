@@ -42,5 +42,39 @@ _: {
       action = "<cmd>Markview toggle<cr>";
       desc = "toggel markdown viewer";
     }
+    {
+      key = "<leader>no";
+      mode = ["n"];
+      lua = true;
+      action = ''
+          function()
+          vim.api.nvim_put({
+            "{",
+            "  pkgs,",
+            "  config,",
+            "  lib,",
+            "  ...",
+            "}: {",
+            "  imports = [",
+            "  ];",
+            "",
+            "  option = {",
+            '    placeholder.enable =',
+            '      lib.mkEnableOption "placeholder";',
+            "  };",
+            "",
+            "  config = lib.mkIf config.placeholder.enable {",
+            "",
+            "  };",
+            "}",
+          }, "l", true, true)
+
+          vim.fn.feedkeys(":%s/placeholder/", "n")
+        end
+      '';
+
+      silent = true;
+      desc = "Insert Nix option template";
+    }
   ];
 }
