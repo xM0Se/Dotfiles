@@ -14,6 +14,7 @@
     ../modules/common/radicle
     ../modules/common/ghostty
     ../modules/common/neru
+    ../modules/common/wallpaper
     ../modules/nixos/hyprland
     ../modules/nixos/waybar
     ../modules/nixos/hyprlock
@@ -25,6 +26,8 @@
   sops.enable = false;
   ghostty.enable = true;
   zsh.enable = true;
+  wallpaper.enable = true;
+
   sops = {
     defaultSopsFile = "${self}/secrets/nixos-test.yaml";
     defaultSopsFormat = "yaml";

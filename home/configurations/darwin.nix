@@ -17,7 +17,7 @@
     ../modules/common/neru
     ../modules/darwin/aerospace
     ../modules/darwin/widgets.nix
-    ../modules/darwin/wallpaper.nix
+    ../modules/common/wallpaper
     ../modules/darwin/borders
     inputs.self.homeModules.sketchybar
   ];
@@ -29,6 +29,7 @@
   radicle.enable = true;
   sops.enable = true;
   ghostty.enable = true;
+  wallpaper.enable = true;
 
   home = {
     # file = {
