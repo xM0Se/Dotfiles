@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   home.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
   ];
@@ -140,20 +144,20 @@
 
     style = ''
       * {
-        color: #e0def4;
+        color: #${config.lib.stylix.colors.base06};
 
         font-family: "JetBrainsMono Nerd Font Propo";
         font-size: 14px;
       }
 
       window#waybar {
-        background-color: #2a273f;
-        border: 2px solid #393552;
+        background-color: #${config.lib.stylix.colors.base00};
+        border: 2px solid #${config.lib.stylix.colors.base02};
         border-radius: 12px;
       }
 
       #custom-separator {
-        color: #e0def4;
+        color: #${config.lib.stylix.colors.base06};
         font-size: 9px;
         margin: 9px;
       }
