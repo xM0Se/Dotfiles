@@ -32,9 +32,6 @@
   wallpaper.enable = true;
 
   home = {
-    # file = {
-    #   "qmk_firmware/keyboards/crkbd/keymaps/custom".source = /Users/xm0se/dotfiles-for-humans/qmk;
-    # };
     packages = [
       inputs.colmena.packages.${pkgs.stdenv.hostPlatform.system}.colmena
       pkgs.sops
